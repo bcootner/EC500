@@ -19,6 +19,13 @@ app.get('/hidden',function(req,res){
 	console.log("hidden found");
 });
 
+// /profile/name directory  - using pug
+app.get('/profile/:name',function(req,res){
+	console.log(name);
+	res.render('profile.pug', { name: name, message: 'Hello there!' });
+});
+
+
 //Not sure what this does, something with sockets...maybe for live-time refreshing?
 app.listen(port, function() {
 	console.log("scarletfish is listening on port: " + port);
