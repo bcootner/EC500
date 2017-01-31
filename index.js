@@ -19,6 +19,7 @@ app.get('/hidden',function(req,res){
 	console.log("hidden found");
 });
 
-// app.listen(port, function() {
-// 	console.log("scarletfish is listening on port" + port);
-// })
+//Not sure what this does, something with sockets...maybe for live-time refreshing?
+app.listen(port, function() {
+	console.log("scarletfish is listening on port: " + port);
+})
