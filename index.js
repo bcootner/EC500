@@ -1,10 +1,11 @@
 'use stric';
 
 var express = require('express');
-var app = express();
 var path = require('path');
-
+var app = express();
 var port = process.env.PORT || 8080;
+
+app.use(express.static(__dirname + '/public'));
 
 app.get('/',function(req,res){
 	console.log("homepage hit");
@@ -14,3 +15,7 @@ app.get('/',function(req,res){
 app.get('/hidden',function(req,res){
 	console.log("hidden found");
 });
+
+app.listen(port, function() {
+	console.log("scarletfish is listening on port" + port);
+})
