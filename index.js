@@ -26,12 +26,7 @@ app.get('/hidden',function(req,res){
 // /profile/name directory  - using pug
 app.get('/profile/:name',function(req,res){
 	console.log(req.params.name);
-	res.render(
-        'profile',
-        {
-            title: req.params.name,
-            message: req.params.name
-        });
+	res.render('profile', { name: req.params.name });
 });
 
 
