@@ -24,6 +24,11 @@ app.get('/flag',function(req,res){
 	res.sendFile(path.join(__dirname, '/public/flag.html'));
 });
 
+app.get('/robots.txt',function(req,res){
+	console.log("flag found!");
+	res.sendFile(path.join(__dirname, '/public/robots.html'));
+});
+
 // /profile/name directory  - using pug
 app.get('/profile/:name',function(req,res){
 	console.log(req.params.name);
