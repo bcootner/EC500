@@ -25,7 +25,7 @@ app.get('/flag',function(req,res){
 });
 
 app.get('/robots.txt',function(req,res){
-	console.log("flag found!");
+	console.log("robots found!");
 	res.sendFile(path.join(__dirname, '/public/robots.html'));
 });
 
