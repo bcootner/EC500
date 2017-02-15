@@ -19,8 +19,9 @@ app.get('/',function(req,res){
 });
 
 // /hidden directory 
-app.get('/hidden',function(req,res){
-	console.log("hidden found");
+app.get('/flag',function(req,res){
+	console.log("flag found!");
+	res.sendFile(path.join(__dirname, '/public/flag.html'));
 });
 
 // /profile/name directory  - using pug
