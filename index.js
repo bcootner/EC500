@@ -20,7 +20,7 @@ app.get('/',function(req,res){
 
 // /hidden directory 
 app.get('/flag',function(req,res){
-	console.log("flag found!");
+	console.log("flag page found!");
 	res.sendFile(path.join(__dirname, '/public/flag.html'));
 });
 
