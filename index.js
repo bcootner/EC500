@@ -21,11 +21,12 @@ app.get('/login/:email/:password', function(req,res){
 	console.log(req.params.password);
 	db.one('SELECT * FROM users WHERE email_address=$1 AND password=$2', [req.params.email, req.params.password])
 	.then(function(data){
-		console.log("DATA:", data.value);
+		console.log("first_name:", data.first_name);
 	})
 	.catch(function(error){
 		console.log("error", error);
 	})
+	res.sendFile(path.join(__dirname, '/public/test.html'));
 });
 
 
