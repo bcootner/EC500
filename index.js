@@ -17,8 +17,8 @@ app.set('view engine', 'pug')
 //Search database for matching params 
 app.get('/login/:email/:password', function(req,res){
 	console.log("login page!")
-	console.log(email);
-	console.log(password);
+	console.log(req.params.email);
+	console.log(req.params.password);
 	db.one('SELECT * FROM users WHERE email_address=$1 AND password=$2', req.params.email, req.params.password)
 	.then(function(data){
 		console.log("DATA:", data.value);
