@@ -50,7 +50,7 @@ app.get('/robots.txt',function(req,res){
 // /profile/name directory  - using pug
 app.get('/profile/:name',function(req,res){
 	console.log("profile page");
-	res.sendFile(path.join(__dirname, '/views/profile.html'));
+	res.sendFile(path.join(__dirname, '/views/profile.html'));
 	//console.log(req.params.name);
 	//res.render('profile', { name: req.params.name });
 });
