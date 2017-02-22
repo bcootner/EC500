@@ -22,7 +22,7 @@ app.get('/login/:email/:password', function(req,res){
 	db.one('SELECT * FROM users WHERE email_address=$1 AND password=$2', [req.params.email, req.params.password])
 	.then(function(data){
 		//email and password are correct 
-		res.sendFile(path.join(__dirname, '/views/profile.html'));
+		res.sendFile(path.join(__dirname, '/public/profile.html'));
 	})
 	.catch(function(error){
 		//email and password are wrong  
