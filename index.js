@@ -39,6 +39,20 @@ app.get('/',function(req,res){
 	res.sendFile(path.join(__dirname, '/public/test.html'));
 });
 
+app.post('/login', function(req,res){
+	console.log('login in GET')
+	db.one('SELECT * FROM users WHERE email_address=$1 AND password=$2', [req.params.email, req.params.password])
+	.then(function(data){
+		//email and password are correct 
+		res.sendFile(path.join(__dirname, '/public/profile.html'));
+	})
+	.catch(function(error){
+		//email and password are wrong  
+		console.log("error", error);
+		res.sendFile(path.join(__dirname, '/public/InvalidLogin.html'));
+	})
+})
+
 // /hidden directory 
 app.get('/flag',function(req,res){
 	console.log("flag page found!");
