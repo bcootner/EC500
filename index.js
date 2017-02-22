@@ -21,12 +21,15 @@ app.get('/login/:email/:password', function(req,res){
 	console.log(req.params.password);
 	db.one('SELECT * FROM users WHERE email_address=$1 AND password=$2', [req.params.email, req.params.password])
 	.then(function(data){
-		console.log("first_name:", data.first_name);
+		//email and password are correct 
+		res.sendFile(path.join(__dirname, '/views/profile.html'));
 	})
 	.catch(function(error){
+		//email and password are wrong  
 		console.log("error", error);
+		res.sendFile(path.join(__dirname, '/public/InvalidLogin.html'));
 	})
-	res.sendFile(path.join(__dirname, '/public/test.html'));
+
 });
 
 
