@@ -49,8 +49,10 @@ app.get('/robots.txt',function(req,res){
 
 // /profile/name directory  - using pug
 app.get('/profile/:name',function(req,res){
-	console.log(req.params.name);
-	res.render('profile', { name: req.params.name });
+	console.log("profile page");
+	res.sendFile(path.join(_dirname, '/views/profile.html'));
+	//console.log(req.params.name);
+	//res.render('profile', { name: req.params.name });
 });
 
 
