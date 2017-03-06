@@ -53,6 +53,11 @@ app.post('/login', function(req,res){
 	})
 })
 
+app.get('/scrolling',function(req,res){
+	console.log("homepage hit");
+	res.sendFile(path.join(__dirname, '/public/Scrollspace/index.html'));
+});
+
 // /hidden directory 
 app.get('/flag',function(req,res){
 	console.log("flag page found!");
@@ -70,6 +75,11 @@ app.get('/profile/:name',function(req,res){
 	res.sendFile(path.join(__dirname, '/public/profile.html'));
 	//console.log(req.params.name);
 	//res.render('profile', { name: req.params.name });
+});
+
+app.get('/*',function(req,res){
+	console.log("flag page found!");
+	res.sendFile(path.join(__dirname, '/public/errorPage.html'));
 });
 
 
