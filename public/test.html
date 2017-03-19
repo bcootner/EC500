@@ -72,14 +72,31 @@
 	</style>
 </head>
 <body>
-<script src="javascript.js">
-</script>
+<script src="javascript.js"></script>
+
+<div class="imgcontainer">
+	<img src="/img_avatar2.png" alt="Avatar" class="avatar">
+</div>
+
+<div class="container">
+	<form id="login_form_id" method="post" name="login_form">
+		
+		<label><b>Username</b></label>
+		<input type="text" name="username" id="username" placeholder="Enter Username" required>
+		
+		<label><b>Password</b></label>
+		<input type="password" name="password" id="password" placeholder="Enter Password" required>
+		
+		<input type="button" value="login" id="submit" onclick="validate()"/>
+	</form>
+</div>
+
+
+
+<!--
 <form action="action_page.php">
-  <div class="imgcontainer">
-    <img src="/img_avatar2.png" alt="Avatar" class="avatar">
-  </div>
-   <!-- HIDDEN COMMENT: Make sure to check out /robots.txt for some hidden things. Thanks for looking at our website, make sure to check us out on mobile!   
-   -->
+  
+
   <div class="container">
     <label><b>Username</b></label>
     <input type="text" placeholder="Enter Username" name="uname" required>
@@ -96,5 +113,6 @@
     <span class="psw">Forgot <a href="#">password?</a></span>
   </div>
 </form>
+-->
 </body>
 </html>
