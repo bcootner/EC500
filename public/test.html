@@ -20,8 +20,12 @@
 		/* Set a style for all buttons */
 		button {
 		    background-color: #4CAF50;
-		    width: auto;
-		    padding: 10px 18px;
+		    color: white;
+		    padding: 14px 20px;
+		    margin: 8px 0;
+		    border: none;
+		    cursor: pointer;
+		    width: 100%;
 		}
 
 		/* Extra style for the cancel button (red) */
@@ -29,6 +33,11 @@
 		    width: auto;
 		    padding: 10px 18px;
 		    background-color: #f44336;
+		}
+
+		.login {
+			width: auto;
+		    padding: 10px 18px;
 		}
 
 		/* Center the avatar image inside this container */
@@ -84,7 +93,7 @@
 		<label><b>Password</b></label>
 		<input type="password" name="password" id="password" placeholder="Enter Password" required>
 		
-		<input type="button" value="Login" id="submit" onclick="validate()"/>
+		<input type="button" class="login" value="Login" id="submit" onclick="validate()"/>
 	</div>
 	<div class="container" style="background-color:#f1f1f1">
     	<button type="button" class="cancelbtn">Cancel</button>

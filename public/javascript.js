@@ -21,6 +21,9 @@ function validate()
 		attempt--;
 		alert("Wrong password. You have " + attempt + " attempts left.");
 
+		document.getElementById("username").value = "";
+		document.getElementById("password").value = "";
+		
 		if (attempt == 0)
 		{
 			document.getElementById("username").disabled = true;
