@@ -53,14 +53,14 @@
 		}
 
 		/* The "Forgot password" text */
-		span.psw {
+		span.password {
 		    float: right;
 		    padding-top: 16px;
 		}
 
 		/* Change styles for span and cancel button on extra small screens */
 		@media screen and (max-width: 300px) {
-		    span.psw {
+		    span.password {
 		        display: block;
 		        float: none;
 		    }
@@ -74,13 +74,14 @@
 <body>
 <script src="javascript.js"></script>
 
+
 <div class="imgcontainer">
 	<img src="/img_avatar2.png" alt="Avatar" class="avatar">
 </div>
 
-<div class="container">
-	<form id="login_form_id" method="post" name="login_form">
-		
+
+<form id="login_form_id" method="post" name="login_form">
+	<div class="container">		
 		<label><b>Username</b></label>
 		<input type="text" name="username" id="username" placeholder="Enter Username" required>
 		
@@ -88,8 +89,13 @@
 		<input type="password" name="password" id="password" placeholder="Enter Password" required>
 		
 		<input type="button" value="login" id="submit" onclick="validate()"/>
-	</form>
-</div>
+	</div>
+	<div class="container" style="background-color:#f1f1f1">
+    	<button type="button" class="cancelbtn">Cancel</button>
+    	<span class="psw">Forgot <a href="#">password?</a></span>
+  	</div>
+</form>
+
 
 
 

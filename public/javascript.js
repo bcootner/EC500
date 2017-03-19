@@ -19,7 +19,7 @@ function validate()
 	else
 	{
 		attempt--;
-		alert("Wrong password. You have " + attempt + " left.");
+		alert("Wrong password. You have " + attempt + " attempts left.");
 
 		if (attemp == 0)
 		{
