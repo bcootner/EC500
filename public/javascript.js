@@ -9,6 +9,15 @@ function validate()
 {
 	var username = document.getElementById("username").value;
 	var password = document.getElementById("password").value;
+
+	if (username == "" || password == "")
+	{
+		alert("All fields are required");
+		document.getElementById("username").value = "";
+		document.getElementById("password").value = "";
+		return false;
+	}
+
 	var uname = "Inna";
 	if (username == uname && password == "1234")
 	{
