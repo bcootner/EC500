@@ -21,7 +21,7 @@ app.use(bodyParser.urlencoded({ extended: true}));
 app.post('/login', function(req,res){
 	console.log("login attempted!");
 	console.log("req.body.username = " + req.body.username);
-	db.one('SELECT * FROM users WHERE email_address=$1 AND password=$2', [req.username, req.password])
+	db.one('SELECT * FROM users WHERE email_address=$1 AND password=$2', [req.body.username, req.body.password])
 	.then(function(data){
 		//email and password are correct 
 		res.sendFile(path.join(__dirname, '/public/profile.html'));
