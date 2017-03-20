@@ -1,6 +1,7 @@
 'use stric';
 
 var express = require('express');
+var bodyParser = require('body-parser');
 var path = require('path');
 var pgp = require('pg-promise')();
 var app = express();
@@ -14,12 +15,13 @@ app.use(express.static(__dirname + '/public'));
 //Use pug for templated pages
 app.set('view engine', 'pug')
 
+app.use(bodyParser.urlencoded({ extended: true}));
+
 //Search database for matching params 
-app.get('/login/:email/:password', function(req,res){
-	console.log("login page!")
-	console.log(req.params.email);
-	console.log(req.params.password);
-	db.one('SELECT * FROM users WHERE email_address=$1 AND password=$2', [req.params.email, req.params.password])
+app.post('/login', function(req,res){
+	console.log("login attempted!");
+	console.log("req.body.username = " + req.body.username);
+	db.one('SELECT * FROM users WHERE email_address=$1 AND password=$2', [req.username, req.password])
 	.then(function(data){
 		//email and password are correct 
 		res.sendFile(path.join(__dirname, '/public/profile.html'));
@@ -39,19 +41,19 @@ app.get('/',function(req,res){
 	res.sendFile(path.join(__dirname, '/public/test.html'));
 });
 
-app.post('/login', function(req,res){
-	console.log('login in GET')
-	db.one('SELECT * FROM users WHERE email_address=$1 AND password=$2', [req.params.email, req.params.password])
-	.then(function(data){
-		//email and password are correct 
-		res.sendFile(path.join(__dirname, '/public/profile.html'));
-	})
-	.catch(function(error){
-		//email and password are wrong  
-		console.log("error", error);
-		res.sendFile(path.join(__dirname, '/public/InvalidLogin.html'));
-	})
-})
+// app.post('/login', function(req,res){
+// 	console.log('login in GET')
+// 	db.one('SELECT * FROM users WHERE email_address=$1 AND password=$2', [req.params.email, req.params.password])
+// 	.then(function(data){
+// 		//email and password are correct 
+// 		res.sendFile(path.join(__dirname, '/public/profile.html'));
+// 	})
+// 	.catch(function(error){
+// 		//email and password are wrong  
+// 		console.log("error", error);
+// 		res.sendFile(path.join(__dirname, '/public/InvalidLogin.html'));
+// 	})
+// })
 
 app.get('/scrolling',function(req,res){
 	console.log("homepage hit");
