@@ -24,7 +24,7 @@ app.post('/login', function(req,res){
 	.then(function(data){
 		//email and password are correct 
 		console.log("log in found user: " + data["first_name"])
-		res.render('profile', { data: data, name: data.first_name });
+		res.render('profile', { data: data });
 		//res.sendFile(path.join(__dirname, '/public/profile.html'));
 	})
 	.catch(function(error){
