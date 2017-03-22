@@ -23,7 +23,7 @@ app.post('/login', function(req,res){
 	db.one('SELECT * FROM users WHERE email_address=$1 AND password=$2', [req.body.email, req.body.password])
 	.then(function(data){
 		//email and password are correct 
-		console.log("log in found user: " + data)
+		console.log("log in found user: " + data.toString())
 		res.sendFile(path.join(__dirname, '/public/profile.html'));
 	})
 	.catch(function(error){
