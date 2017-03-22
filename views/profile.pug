@@ -1,13 +1,43 @@
+doctype html
 html
- head
-  title= name + "'s Profile"
-
- body
-  h1= "Welcome " + name + "!"
-  div
-	
-
-//  if name === "22338618"
-//    h1= "Welcome " + name  + " FLAG: {'This Above All: To Thine Own Self Be True.' -Shakespeare }"
-//  else 
-//    h1= "Welcome " + name + "...but " + name + " != количество цифр в крупнейшем простейшем числе"
+    head
+        title = Profile Page
+        link(rel='stylesheet' href='profileStyle.css')
+    body(onload='updateFeatures()')
+        script(src='profileScripts.js')
+        #header_content
+            h1(class='header_objects' id='name')
+                img(src='profile-42914_960_720.jpg' style='width: 200px')
+                Your Name
+        #main_content 
+            .panels.left
+                h2 Your Current Features:
+                p(id='features')
+                    To be filled by javascript
+            .panels.right
+                h2 Personal Feed:
+                p data.first_name
+                p data.last_name
+                p data.password
+                p To be filled by javascript
+                p To be filled by javascript
+                p To be filled by javascript
+            .panels.left
+                h2 Your Current Features:
+                p(id='features')
+                    To be filled by javascript
+            .panels.left
+                h2 Your Current Features:
+                p(id='features')
+                    To be filled by javascript
+            .panels.right
+                h2 Personal Feed:
+                p To be filled by javascript
+                p To be filled by javascript
+                p To be filled by javascript
+                p To be filled by javascript
+                p To be filled by javascript
+                p To be filled by javascript
+        #clearer
+        #footer_content
+            h3 life's a game, play responsibly
