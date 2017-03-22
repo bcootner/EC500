@@ -46,7 +46,7 @@ app.post('/signup', function(req,res){
 	.catch(function(error){
 		//Email not found 
 		console.log("not found: ", error);
-		if(req.body.password != req.body,confirmPassword) {
+		if(req.body.password != req.body.confirmPassword) {
 			alert("Passwords do not match!");
 		} else if (req.body.password.legnth < 8) {
 			alert("Password must contain at least 8 characters!");
@@ -56,7 +56,7 @@ app.post('/signup', function(req,res){
 			alert("Email address cannot contain spaces");
 		} else {
 			//Ok to sign up user 
-			vare date = new Date()
+			var date = new Date()
 			db.none('INSERT INTO users (first_name, last_name, email_address, password, install_date) VALUES ($1,$2,$3,$4,$5)', [req.body.firstName, req.body.lastName, req.body.email, req.body.password, date]);
 		}
 	})
