@@ -17,19 +17,50 @@ app.set('view engine', 'pug')
 
 app.use(bodyParser.urlencoded({ extended: true}));
 
-//Search database for matching params 
+//Search database for matching params - email and password 
 app.post('/login', function(req,res){
 	console.log("login attempted!");
-	console.log("req.body.username = " + req.body.username);
-	db.one('SELECT * FROM users WHERE email_address=$1 AND password=$2', [req.body.username, req.body.password])
+	db.one('SELECT * FROM users WHERE email_address=$1 AND password=$2', [req.body.email, req.body.password])
 	.then(function(data){
 		//email and password are correct 
+		console.log("log in found user: " + data["first_name"])
+		console.log("log in found user: " + data.first_name)
+
 		res.sendFile(path.join(__dirname, '/public/profile.html'));
 	})
 	.catch(function(error){
 		//email and password are wrong  
 		console.log("error", error);
 		res.sendFile(path.join(__dirname, '/public/InvalidLogin.html'));
+	})
+
+});
+
+//Adds new sign up - firstName, lastName, password, confirmPassword, email  
+app.post('/signup', function(req,res){
+	console.log("login attempted!");
+	db.one('SELECT * FROM users WHERE email_address=$1', [req.body.email])
+	.then(function(data){
+		//email is alreay in db
+		console.log("sign up fond user " + data)
+		alert("This email address is already registered!");
+	})
+	.catch(function(error){
+		//Email not found 
+		console.log("not found: ", error);
+		if(req.body.password != req.body.confirmPassword) {
+			alert("Passwords do not match!");
+		} else if (req.body.password.legnth < 8) {
+			alert("Password must contain at least 8 characters!");
+		} else if (req.body.email.indexOf('@') == -1) {
+			alert("Email address is not valid!");
+		} else if (req.body.email.indexOf(' ') > -1) {
+			alert("Email address cannot contain spaces");
+		} else {
+			//Ok to sign up user 
+			var date = new Date()
+			db.none('INSERT INTO users (first_name, last_name, email_address, password, install_date) VALUES ($1,$2,$3,$4,$5)', [req.body.firstName, req.body.lastName, req.body.email, req.body.password, date]);
+		}
 	})
 
 });
