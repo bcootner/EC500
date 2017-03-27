@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({ extended: true}));
 
 //Search database for matching params - email and password 
 app.post('/login', function(req,res){
-	console.log("login attempted!");
+	console.log("login attempt");
 	db.one('SELECT * FROM users WHERE email_address=$1 AND password=$2', [req.body.email, req.body.password])
 	.then(function(data){
 		//email and password are correct 
@@ -37,7 +37,7 @@ app.post('/login', function(req,res){
 
 //Adds new sign up - firstName, lastName, password, confirmPassword, email  
 app.post('/signup', function(req,res){
-	console.log("sign up attempted!");
+	console.log("sign up attempt");
 	db.one('SELECT * FROM users WHERE email_address=$1', [req.body.email])
 	.then(function(data){
 		//email is alreay in db
@@ -92,7 +92,6 @@ app.get('/scrolling',function(req,res){
 
 // /hidden directory 
 app.get('/flag',function(req,res){
-	console.log("flag page found!");
 	res.sendFile(path.join(__dirname, '/public/flag.html'));
 });
 
@@ -110,7 +109,6 @@ app.get('/profile/:name',function(req,res){
 });
 
 app.get('/*',function(req,res){
-	console.log("flag page found!");
 	res.sendFile(path.join(__dirname, '/public/errorPage.html'));
 });
 
