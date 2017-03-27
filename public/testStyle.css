@@ -1,0 +1,94 @@
+    /* Bordered form */
+    form {
+        border: 3px solid #f1f1f1;
+    }
+
+    /* Full-width inputs */
+    input[type=text], input[type=password] {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+    }
+
+    /* Set a style for all buttons */
+    button {
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+    }
+
+    .login {
+      width: auto;
+        padding: 10px 18px;
+    }
+
+    /* Center the avatar image inside this container */
+    .imgcontainer {
+        text-align: center;
+        margin: 24px 0 12px 0;
+    }
+
+    /* Avatar image */
+    img.avatar {
+        width: 30%;
+        border-radius: 50%;
+    }
+
+    /* Add padding to containers */
+    .container {
+        padding: 16px;
+    }
+
+    /* The "Forgot password" text */
+    span.password {
+        float: right;
+        padding-top: 16px;
+    }
+
+    div.tab 
+    {
+      overflow: hidden;
+      border: 1px solid #ccc;
+      background-color: #f1f1f1;
+    }
+
+    /* Style the buttons inside the tab */
+    div.tab button 
+    {
+        background-color: inherit;
+        float: left;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 14px 16px;
+        transition: 0.3s;
+        color: #393939;
+    }
+
+    /* Change background color of buttons on hover */
+    div.tab button:hover 
+    {
+        background-color: #ddd;
+    }
+
+    /* Create an active/current tablink class */
+    div.tab button.active 
+    {
+        background-color: #ccc;
+    }
+
+    /* Style the tab content */
+    .tabcontent 
+    {
+        display: none;
+        padding: 6px 12px;
+        border: 1px solid #ccc;
+        border-top: none;
+    }
