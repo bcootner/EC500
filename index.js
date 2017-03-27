@@ -49,16 +49,22 @@ app.post('/signup', function(req,res){
 		console.log("not found: ", error);
 		if(req.body.password != req.body.confirmPassword) {
 			console.log("Passwords do not match!");
+			res.errror("sign up fail");
 		} else if (req.body.password.legnth < 8) {
 			console.log("Password must contain at least 8 characters!");
+			res.errror("sign up fail");
 		} else if (req.body.email.indexOf('@') == -1) {
 			console.log("Email address is not valid!");
+			res.errror("sign up fail");
 		} else if (req.body.email.indexOf(' ') > -1) {
 			console.log("Email address cannot contain spaces");
+			res.errror("sign up fail");
 		} else {
 			//Ok to sign up user 
 			var date = new Date()
 			db.none('INSERT INTO users (first_name, last_name, email_address, password, install_date) VALUES ($1,$2,$3,$4,$5)', [req.body.firstName, req.body.lastName, req.body.email, req.body.password, date]);
+			console.log("made user!")
+			res.success("success")
 		}
 	})
 
