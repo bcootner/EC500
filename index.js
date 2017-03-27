@@ -48,13 +48,13 @@ app.post('/signup', function(req,res){
 		//Email not found 
 		console.log("not found: ", error);
 		if(req.body.password != req.body.confirmPassword) {
-			alert("Passwords do not match!");
+			console.log("Passwords do not match!");
 		} else if (req.body.password.legnth < 8) {
-			alert("Password must contain at least 8 characters!");
+			console.log("Password must contain at least 8 characters!");
 		} else if (req.body.email.indexOf('@') == -1) {
-			alert("Email address is not valid!");
+			console.log("Email address is not valid!");
 		} else if (req.body.email.indexOf(' ') > -1) {
-			alert("Email address cannot contain spaces");
+			console.log("Email address cannot contain spaces");
 		} else {
 			//Ok to sign up user 
 			var date = new Date()
