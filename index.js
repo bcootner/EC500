@@ -37,7 +37,7 @@ app.post('/login', function(req,res){
 
 //Adds new sign up - firstName, lastName, password, confirmPassword, email  
 app.post('/signup', function(req,res){
-	console.log("login attempted!");
+	console.log("sign up attempted!");
 	db.one('SELECT * FROM users WHERE email_address=$1', [req.body.email])
 	.then(function(data){
 		//email is alreay in db
