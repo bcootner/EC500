@@ -4,6 +4,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var path = require('path');
 var pgp = require('pg-promise')();
+var randStr = require("randomstring");
 var app = express();
 var port = process.env.PORT || 8080;
 
@@ -62,7 +63,7 @@ app.post('/signup', function(req,res){
 		} else {
 			//Ok to sign up user 
 			var date = new Date()
-			db.none('INSERT INTO users (first_name, last_name, email_address, password, signup_date) VALUES ($1,$2,$3,$4,$5)', [req.body.firstName, req.body.lastName, req.body.email, req.body.password, date]);
+			db.none('INSERT INTO users (first_name, last_name, email_address, password, signup_date, id_num, background_color, exp_pts) VALUES ($1,$2,$3,$4,$5,$6,$7,$8)', [req.body.firstName, req.body.lastName, req.body.email, req.body.password, date, randStr.generate(10), '#ff0000', 5]);
 			console.log("made user!")
 			res.sendFile(path.join(__dirname, '/public/test.html'));
 		}
@@ -77,19 +78,6 @@ app.get('/',function(req,res){
 	res.sendFile(path.join(__dirname, '/public/test.html'));
 });
 
-// app.post('/login', function(req,res){
-// 	console.log('login in GET')
-// 	db.one('SELECT * FROM users WHERE email_address=$1 AND password=$2', [req.params.email, req.params.password])
-// 	.then(function(data){
-// 		//email and password are correct 
-// 		res.sendFile(path.join(__dirname, '/public/profile.html'));
-// 	})
-// 	.catch(function(error){
-// 		//email and password are wrong  
-// 		console.log("error", error);
-// 		res.sendFile(path.join(__dirname, '/public/InvalidLogin.html'));
-// 	})
-// })
 
 app.get('/scrolling',function(req,res){
 	console.log("homepage hit");
