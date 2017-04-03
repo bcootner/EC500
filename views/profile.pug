@@ -2,11 +2,11 @@ html
     head
         title = Profile Page
         link(rel='stylesheet' href='profileStyle.css')
-    body(onload='updateFeatures(data)')
+    body(onload='updateFeatures()')
         script(src='profileScripts.js')
         #header_content
             h1(class='header_objects' id='name')
-                Picture and Name
+                '#{data.first_name}' '#{data.last_name}'
         #main_content 
             .panels.left
                 h2 Your Current Features:
