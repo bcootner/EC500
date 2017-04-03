@@ -7,9 +7,9 @@ html
         #header_content
             h1(class='header_objects' id='name')
                 -   var first = data.first_name
-                    var last = data.last_name
-                    var full_name = first + " " + last
-                p = full_name
+                -   var last = data.last_name
+                -   var full_name = first + " " + last
+                p= full_name
         #main_content 
             .panels.left
                 h2 Your Current Features:
