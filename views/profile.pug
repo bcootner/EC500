@@ -28,24 +28,14 @@ html
                 h2 Personal Feed:
                 p= data.first_name
                 p= data.last_name
-                p To be filled by blah
-                p To be filled by javascript
-                p To be filled by javascript
+                p= data.email_address
+                p= data.background_color
+                p= data.id_num
+                p= data.signup_date
+                p= exp_pts
             .panels.left(style=styling)
                 h2 Signup Date:
                 p= data.signup_date
-            .panels.left(style=styling)
-                h2 Your Current Features:
-                p(id='features')
-                    To be filled by javascript
-            .panels.right(style=styling)
-                h2 Personal Feed:
-                p To be filled by javascript
-                p To be filled by javascript
-                p To be filled by javascript
-                p To be filled by javascript
-                p To be filled by javascript
-                p To be filled by javascript
         #clearer
         #footer_content(style=styling)
             h3 life's a game, play responsibly
