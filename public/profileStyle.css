@@ -10,6 +10,7 @@ body {
 #header_content {
 	background-color: green; 
 	max-width: 1000px; 
+	height: 220px;
 	margin: 0 auto; 
 	padding: 10px; 
 	opacity: 0.75;
