@@ -6,12 +6,11 @@ html
         script(src='profileScripts.js')
         #header_content
             h1(class='header_objects' id='name')
-                img(src=\'profile-42914_960_720.jpg\' style=\'width: 200px; padding-right: 10px\')
                 -   var first = data.first_name
                 -   var last = data.last_name
-                -   var img = 'img(src=\'profile-42914_960_720.jpg\' style=\'width: 200px; padding-right: 10px\')'
+                -   var img = '<src=\"profile-42914_960_720.jpg\" style=\"width: 200px; padding-right: 10px\">'
                 -   var header = img + ' ' + first + ' ' + last
-                p= header
+                p!= header
         #main_content 
             .panels.left
                 h2 Your Current Features:
