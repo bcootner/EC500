@@ -4,7 +4,8 @@ html
         link(rel='stylesheet' href='profileStyle.css')
     body
         script(src='profileScripts.js')
-        #header_content(style="background-color: #{data.background_color};")
+        -   var styleing = "background-color: #{data.background_color};"
+        #header_content(style=styleing)
             h1(class='header_objects' id='name')
                 .profile_pic(style='float: left')
                     img(src="profile-42914_960_720.jpg" style="width: 200px; padding-right: 10px")
@@ -16,12 +17,7 @@ html
         #experience_bar
             -   var points = data.exp_pts ;
             -   var label = "Currently at " + points + " of 100 points towards next feature";
-            -   var attributes = {};
-            -   attributes.style = {};
-            -   attributes.style.text-align = center;
-            -   attributes.style.margin = 0px;
-            //-   attributes.style.background-color = data.background_color;
-            p&attributes(attributes)= label
+            p(style='text-align: center; margin = 0px')= label
         #clearer
         #main_content 
             .panels.left
