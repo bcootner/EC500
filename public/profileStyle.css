@@ -10,7 +10,7 @@ body {
 #header_content {
 	background-color: green; 
 	max-width: 1000px; 
-	height: 200px;
+	height: 190px;
 	margin: 0 auto; 
 	padding: 10px; 
 	opacity: 0.75;
@@ -23,6 +23,16 @@ body {
 }
 
 #footer_content {
+	background-color: green; 
+	max-width: 1000px; 
+	margin: 0 auto; 
+	padding: 10px; 
+	margin-top: 10px; 
+	opacity: 0.75; 
+	width: 100%
+}
+
+#experience_bar {
 	background-color: green; 
 	max-width: 1000px; 
 	margin: 0 auto; 

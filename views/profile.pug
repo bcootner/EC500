@@ -13,6 +13,11 @@ html
                     -   var last = data.last_name
                     -   var header = first + ' ' + last
                     p= header
+        #experience_bar
+            -   var points = data.exp_pts 
+            -   var label = "Currently at " + points + " of 100"
+            h4= label
+        #clearer
         #main_content 
             .panels.left
                 h2 Your Current Features:
