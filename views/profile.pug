@@ -15,32 +15,32 @@ html
                     -   var last = data.last_name;
                     -   var header = first + ' ' + last;
                     p= header
-        #experience_bar
+        #experience_bar(style=styling)
             -   var points = data.exp_pts ;
             -   var label = "Currently at " + points + " of 100 points towards next feature";
             p(style='text-align: center; margin = 0px')= label
         #clearer
-        #main_content 
-            .panels.left
+        #main_content
+            .panels.left(style=styling)
                 h2 Your Current Features:
                 p(id='features')
                     To be filled by javascript
-            .panels.right
+            .panels.right(style=styling)
                 h2 Personal Feed:
                 p= data.first_name
                 p= data.last_name
                 p To be filled by blah
                 p To be filled by javascript
                 p To be filled by javascript
-            .panels.left
+            .panels.left(style=styling)
                 h2 Your Current Features:
                 p(id='features')
                     To be filled by javascript
-            .panels.left
+            .panels.left(style=styling)
                 h2 Your Current Features:
                 p(id='features')
                     To be filled by javascript
-            .panels.right
+            .panels.right(style=styling)
                 h2 Personal Feed:
                 p To be filled by javascript
                 p To be filled by javascript
@@ -49,5 +49,5 @@ html
                 p To be filled by javascript
                 p To be filled by javascript
         #clearer
-        #footer_content
+        #footer_content(style=styling)
             h3 life's a game, play responsibly
