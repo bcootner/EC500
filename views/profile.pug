@@ -22,9 +22,8 @@ html
         #clearer
         #main_content
             .panels.left(style=styling)
-                h2 Your Current Features:
-                p(id='features')
-                    To be filled by javascript
+                h2 Your Email:
+                p= data.email_address
             .panels.right(style=styling)
                 h2 Personal Feed:
                 p= data.first_name
@@ -33,9 +32,8 @@ html
                 p To be filled by javascript
                 p To be filled by javascript
             .panels.left(style=styling)
-                h2 Your Current Features:
-                p(id='features')
-                    To be filled by javascript
+                h2 Signup Date:
+                p= data.signup_date
             .panels.left(style=styling)
                 h2 Your Current Features:
                 p(id='features')
