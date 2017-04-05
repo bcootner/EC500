@@ -78,26 +78,26 @@ app.post('/addPts', function(req,res){
 	if (req.body.value == "2") {
 		newPts += 5
 	} 
-	if (req.body.value == "serge") {
+	else if (req.body.value == "serge") {
 		newPts += 5
 	} 
-	if (req.body.value == "alshaykh") {
+	else if (req.body.value == "alshaykh") {
 		newPts += 5
 	} 
-	if (req.body.value == "penny") {
+	else if (req.body.value == "penny") {
 		newPts += 5
 	} 
-	if (req.body.value == "bookkeeper") {
+	else if (req.body.value == "bookkeeper") {
 		newPts += 10
 	} 
-	if (req.body.value == "#ff0000") {
+	else if (req.body.value == "#ff0000") {
 		newPts += 15
 	} 
-	if (req.body.value == "chuck") {
+	else if (req.body.value == "chuck") {
 		newPts += 15
 	} 
 
-	if (newPts == 0) {
+	if (newPts != 0) {
 		db.one('SELECT * FROM users WHERE email_address=$1', [req.body.email])
 		.then(function(data){
 			//email is found
@@ -107,7 +107,7 @@ app.post('/addPts', function(req,res){
 			.then(function(data){
 				//email and password are correct 
 				console.log("ADDED PTS")
-				res.sendFile(path.join(__dirname, '/public/addPts.html'));
+				res.sendFile(path.join(__dirname, '/public/addedPts.html'));
 			})
 			.catch(function(error){
 				//email and password are wrong  
@@ -122,7 +122,7 @@ app.post('/addPts', function(req,res){
 
 		})
 	} else {
-		console.log("not valid input", error);
+		console.log("not valid input");
 		res.sendFile(path.join(__dirname, '/public/addPts.html'));
 	}
 });
