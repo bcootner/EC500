@@ -103,7 +103,7 @@ app.post('/addPts', function(req,res){
 			//email is found
 			console.log("found user")
 			var pts = data["exp_pts"]
-			db.none("UPDATE user SET exp_pts = $1 WHERE id_num = $2", [pts + newPts, data["id_num"] ])
+			db.none("UPDATE users SET exp_pts = $1 WHERE id_num = $2", [pts + newPts, data["id_num"] ])
 			.then(function(data){
 				//email and password are correct 
 				console.log("ADDED PTS")
