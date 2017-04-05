@@ -104,11 +104,22 @@ app.post('/addPts', function(req,res){
 			console.log("found user")
 			var pts = data["exp_pts"]
 			db.none("UPDATE user SET exp_pts = $1 WHERE id_num = $2", [pts + newPts, data["id_num"] ])
-			res.sendFile(path.join(__dirname, '/public/addedPts.html'));
+			.then(function(data){
+				//email and password are correct 
+				console.log("ADDED PTS")
+				res.sendFile(path.join(__dirname, '/public/addPts.html'));
+			})
+			.catch(function(error){
+				//email and password are wrong  
+				console.log("error adding pts", error);
+				res.sendFile(path.join(__dirname, '/public/addPts.html'));
+
+			})
 		})
 		.catch(function(error){
 			//email and password are wrong  
-			console.log("no user", error);
+			res.sendFile(path.join(__dirname, '/public/addPts.html'));
+
 		})
 	} else {
 		console.log("not valid input", error);

@@ -64,6 +64,10 @@ h1 {
     width: 600px;
 }
 
+.grid-item-img{
+    width: auto;
+}
+
 .grid-item p {
     margin: 0;
     padding: 0.5em;
