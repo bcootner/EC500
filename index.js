@@ -106,7 +106,7 @@ app.post('/addPts', function(req,res){
 			db.none("UPDATE users SET exp_pts = $1 WHERE id_num = $2", [pts + newPts, data["id_num"] ])
 			.then(function(data){
 				//email and password are correct 
-				console.log("ADDED PTS")
+				console.log("ADDED PTS to " + data["email_address"] + "for " + req.body.value)
 				res.sendFile(path.join(__dirname, '/public/addedPts.html'));
 			})
 			.catch(function(error){
