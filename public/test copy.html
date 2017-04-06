@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href='testStyle.css' rel='stylesheet' type='text/css'>
+</head>
+<body>
+<script src="testScripts.js"></script>
+
+
+<div class="imgcontainer">
+	<img src="default-avatar-ponsy-deer.png" alt="Avatar" class="avatar" 
+</div>
+
+<div class="tab">
+  <button class="tablinks" onclick="openOption(event, 'Login')">Log-In</button>
+  <button class="tablinks" onclick="openOption(event, 'Register')">Register</button>
+</div>
+
+<div id="Login" class="tabcontent">
+	<form action="/login" id="login_form_id" method="post" name="login_form">
+		<div class="container">		
+			<label><b>Email</b></label>
+			<input type="text" name="email" id="email" placeholder="Enter Email" required>
+			
+			<label><b>Password</b></label>
+			<input type="password" name="password" id="password" placeholder="Enter Password" required>
+			
+			<input type="submit" class="login" value="Login" id="submit"/>
+		</div>
+		<div class="container" style="background-color:#f1f1f1">
+	    	<span class="psw">Forgot <a href="#">password?</a></span>
+	  	</div>
+	</form>
+</div>
+
+<div id="Register" class="tabcontent">
+  <form action="/signup" id="login_form_id" method="post" name="login_form">
+		<div class="container">		
+			<label><b>First Name</b></label>
+			<input type="text" name="firstName" id="firstName" placeholder="Enter First Name" required>
+
+			<label><b>Last Name</b></label>
+			<input type="text" name="lastName" id="lastName" placeholder="Enter Last Name" required>
+
+			<label><b>Email</b></label>
+			<input type="text" name="email" id="email" placeholder="Enter Email" required>
+
+			<label><b>Password</b></label>
+			<input type="password" name="password" id="password" placeholder="Enter Password" required>
+			
+			<label><b>ConfirmPassword</b></label>
+			<input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password" required>
+			
+			<input type="submit" class="register" value="Register" id="submit"/>
+		</div>
+	</form>
+</div>
+
+
+</body>
+</html>
