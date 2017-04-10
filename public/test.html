@@ -1,61 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html >
 <head>
-    <link href='testStyle.css' rel='stylesheet' type='text/css'>
+  <meta charset="UTF-8">
+  <title>Flat Login Form</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+
+<link rel="stylesheet" href="testStyle.css">
+
+  
 </head>
+
 <body>
-<script src="testScripts.js"></script>
-
-
-<div class="imgcontainer">
-  <img src="default-avatar-ponsy-deer.png" alt="Avatar" class="avatar" 
+  
+<div class="container">
+  <div class="info">
+    <h1>Life is a Game</h1><span><h2>Begin</h2></span>
+  </div>
 </div>
-
-<div class="tab">
-  <button class="tablinks" onclick="openOption(event, 'Login')">Log-In</button>
-  <button class="tablinks" onclick="openOption(event, 'Register')">Register</button>
-</div>
-
-<div id="Login" class="tabcontent">
-  <form action="/login" id="login_form_id" method="post" name="login_form">
-    <div class="container">   
-      <label><b>Email</b></label>
-      <input type="text" name="email" id="email" placeholder="Enter Email" required>
-      
-      <label><b>Password</b></label>
-      <input type="password" name="password" id="password" placeholder="Enter Password" required>
-      
-      <input type="submit" class="login" value="Login" id="submit"/>
-    </div>
-    <div class="container" style="background-color:#f1f1f1">
-        <span class="psw">Forgot <a href="#">password?</a></span>
-      </div>
+<div class="form">
+<!--   <div class="thumbnail"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/169963/hat.svg"/></div> -->
+  <form class="register-form">
+    <input type="text" placeholder="name"/>
+    <input type="password" placeholder="password"/>
+    <input type="text" placeholder="email address"/>
+    <button>create</button>
+    <p class="message">Already registered? <a href="#">Sign In</a></p>
+  </form>
+  <form class="login-form">
+    <input type="text" placeholder="username"/>
+    <input type="password" placeholder="password"/>
+    <button>login</button>
+    <p class="message">Not registered? <a href="#">Create an account</a></p>
   </form>
 </div>
+<video id="video" autoplay="autoplay" loop="loop" poster="polina.jpg">
+  <source src="http://andytran.me/A%20peaceful%20nature%20timelapse%20video.mp4" type="video/mp4"/>
+</video>
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 
-<div id="Register" class="tabcontent">
-  <form action="/signup" id="login_form_id" method="post" name="login_form">
-    <div class="container">   
-      <label><b>First Name</b></label>
-      <input type="text" name="firstName" id="firstName" placeholder="Enter First Name" required>
-
-      <label><b>Last Name</b></label>
-      <input type="text" name="lastName" id="lastName" placeholder="Enter Last Name" required>
-
-      <label><b>Email</b></label>
-      <input type="text" name="email" id="email" placeholder="Enter Email" required>
-
-      <label><b>Password</b></label>
-      <input type="password" name="password" id="password" placeholder="Enter Password" required>
-      
-      <label><b>ConfirmPassword</b></label>
-      <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password" required>
-      
-      <input type="submit" class="register" value="Register" id="submit"/>
-    </div>
-  </form>
-</div>
-
+    <script src="testScripts.js"></script>
 
 </body>
 </html>
