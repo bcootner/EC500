@@ -173,7 +173,7 @@ app.get('/addPts',function(req,res){
 
 app.get('/scrolling',function(req,res){
 	console.log("scrolling hit");
-	res.sendFile(path.join(__dirname, '/public/index.html'));
+	res.sendFile(path.join(__dirname, '/public/index2.html'));
 });
 
 // /hidden directory 
