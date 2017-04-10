@@ -42,8 +42,9 @@ app.post('/signup', function(req,res){
 	db.one('SELECT * FROM users WHERE email_address=$1', [req.body.email])
 	.then(function(data){
 		//email is alreay in db
-		console.log("sign up fond user " + data)
-		alert("This email address is already registered!");
+		console.log("sign up found user " + data)
+		res.sendFile(path.join(__dirname, '/public/test_signup.html'));
+
 	})
 	.catch(function(error){
 		//Email not found 
@@ -51,8 +52,8 @@ app.post('/signup', function(req,res){
 		if(req.body.password != req.body.confirmPassword) {
 			console.log("Passwords do not match!");
 			res.sendFile(path.join(__dirname, '/public/test.html'));
-		} else if (req.body.password.length < 6) {
-			console.log("Password must contain at least 6 characters!");
+		} else if (req.body.password.length < 1) {
+			console.log("Password must contain at least 1 characters!");
 			res.sendFile(path.join(__dirname, '/public/test.html'));
 		} else if (req.body.email.indexOf('@') == -1) {
 			console.log("Email address is not valid!");
@@ -65,7 +66,7 @@ app.post('/signup', function(req,res){
 			var date = new Date()
 			db.none('INSERT INTO users (first_name, last_name, email_address, password, signup_date, id_num, background_color, exp_pts) VALUES ($1,$2,$3,$4,$5,$6,$7,$8)', [req.body.firstName, req.body.lastName, req.body.email, req.body.password, date, randStr.generate(10), '#ff0000', 5]);
 			console.log("made user!")
-			res.sendFile(path.join(__dirname, '/public/test.html'));
+			res.sendFile(path.join(__dirname, '/public/test_login.html'));
 		}
 	})
 
@@ -76,6 +77,11 @@ app.post('/addPts', function(req,res){
 	console.log("add pts attempt up");
 	var newPts = 0 
 	var feature_id = ""
+
+	if (req.body.value == "scylla") {
+		newPts += -6
+		feature_id = "0000000000"
+	} 
 	if (req.body.value == "2") {
 		newPts += 5
 		feature_id = "1111111111"
@@ -157,16 +163,16 @@ app.post('/addPts', function(req,res){
 //Main page
 app.get('/',function(req,res){
 	console.log("homepage hit");
-	res.sendFile(path.join(__dirname, '/public/test.html'));
+	res.sendFile(path.join(__dirname, '/public/test_signup.html'));
 });
 
 app.get('/addPts',function(req,res){
-	console.log("homepage hit");
+	console.log("add pts hit");
 	res.sendFile(path.join(__dirname, '/public/addPts.html'));
 });
 
 app.get('/scrolling',function(req,res){
-	console.log("homepage hit");
+	console.log("scrolling hit");
 	res.sendFile(path.join(__dirname, '/public/index.html'));
 });
 
