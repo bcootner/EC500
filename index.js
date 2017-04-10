@@ -125,7 +125,7 @@ app.post('/addPts', function(req,res){
 				//feature not added by user 
 				console.log("not yet by usr - adding in feature transaction") 
 				var date = new Date()
-				db.none('INSERT INTO featurestransactions (user_id, feature_id, added_date) VALUES ($1,$2,$3)', [req.body.userId, req.body.featureId, date]);
+				db.none('INSERT INTO featurestransactions (user_id, feature_id, added_date) VALUES ($1,$2,$3)', [data["user_id"], feature_id, date]);
 				//keep going - add pts
 				db.none("UPDATE users SET exp_pts = $1 WHERE id_num = $2", [pts + newPts, data["id_num"] ])
 				.then(function(data2){
