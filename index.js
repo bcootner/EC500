@@ -115,7 +115,7 @@ app.post('/addPts', function(req,res){
 			console.log("found user")
 			var pts = Number(data["exp_pts"])
 			//check if user added this feature before 
-			db.one('SELECT * FROM featurestransactions WHERE user_id=$1 AND feature_id=$2', [data["user_id"], feature_id])
+			db.one('SELECT * FROM featurestransactions WHERE user_id=$1 AND feature_id=$2', [data["id_num"], feature_id])
 			.then(function(data){
 				//feature already added by user
 				console.log("already added by usr") 
@@ -125,7 +125,7 @@ app.post('/addPts', function(req,res){
 				//feature not added by user 
 				console.log("not yet by usr - adding in feature transaction") 
 				var date = new Date()
-				db.none('INSERT INTO featurestransactions (user_id, feature_id, added_date) VALUES ($1,$2,$3)', [data["user_id"], feature_id, date]);
+				db.none('INSERT INTO featurestransactions (user_id, feature_id, added_date) VALUES ($1,$2,$3)', [data["id_num"], feature_id, date]);
 				//keep going - add pts
 				db.none("UPDATE users SET exp_pts = $1 WHERE id_num = $2", [pts + newPts, data["id_num"] ])
 				.then(function(data2){
