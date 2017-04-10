@@ -51,8 +51,8 @@ app.post('/signup', function(req,res){
 		if(req.body.password != req.body.confirmPassword) {
 			console.log("Passwords do not match!");
 			res.sendFile(path.join(__dirname, '/public/test.html'));
-		} else if (req.body.password.legnth < 8) {
-			console.log("Password must contain at least 8 characters!");
+		} else if (req.body.password.length < 6) {
+			console.log("Password must contain at least 6 characters!");
 			res.sendFile(path.join(__dirname, '/public/test.html'));
 		} else if (req.body.email.indexOf('@') == -1) {
 			console.log("Email address is not valid!");
@@ -75,26 +75,37 @@ app.post('/signup', function(req,res){
 app.post('/addPts', function(req,res){
 	console.log("add pts attempt up");
 	var newPts = 0 
+	var feature_id = ""
 	if (req.body.value == "2") {
 		newPts += 5
+		feature_id = "1111111111"
 	} 
 	else if (req.body.value == "serge") {
 		newPts += 5
+		feature_id = "2222222222"
+
 	} 
 	else if (req.body.value == "alshaykh") {
 		newPts += 5
+		feature_id = "3333333333"
 	} 
 	else if (req.body.value == "penny") {
 		newPts += 5
+		feature_id = "4444444444"
+
 	} 
 	else if (req.body.value == "bookkeeper") {
 		newPts += 10
+		feature_id = "5555555555"
 	} 
 	else if (req.body.value == "#ff0000") {
 		newPts += 15
+		feature_id = "666666666"
+
 	} 
 	else if (req.body.value == "chuck") {
 		newPts += 15
+		feature_id = "777777777"
 	} 
 
 	if (newPts != 0) {
@@ -103,17 +114,31 @@ app.post('/addPts', function(req,res){
 			//email is found
 			console.log("found user")
 			var pts = Number(data["exp_pts"])
-			db.none("UPDATE users SET exp_pts = $1 WHERE id_num = $2", [pts + newPts, data["id_num"] ])
-			.then(function(data2){
-				//email and password are correct 
-				console.log("ADDED PTS to " + data["email_address"] + "for " + req.body.value)
-				res.sendFile(path.join(__dirname, '/public/addedPts.html'));
+			//check if user added this feature before 
+			db.one('SELECT * FROM featurestransactions WHERE user_id=$1 AND feature_id=$2', [data["user_id"], feature_id])
+			.then(function(data){
+				//feature already added by user
+				console.log("already added by usr") 
+				res.sendFile(path.join(__dirname, '/public/alreadyAdded.html'));
 			})
 			.catch(function(error){
-				//email and password are wrong  
-				console.log("error adding pts", error);
-				res.sendFile(path.join(__dirname, '/public/addPts.html'));
+				//feature not added by user 
+				console.log("not yet by usr - adding in feature transaction") 
+				var date = new Date()
+				db.none('INSERT INTO featurestransactions (user_id, feature_id, added_date) VALUES ($1,$2,$3)', [req.body.userId, req.body.featureId, date]);
+				//keep going - add pts
+				db.none("UPDATE users SET exp_pts = $1 WHERE id_num = $2", [pts + newPts, data["id_num"] ])
+				.then(function(data2){
+					//updated pts!
+					console.log("ADDED PTS to " + data["email_address"] + "for " + req.body.value)
+					res.sendFile(path.join(__dirname, '/public/addedPts.html'));
+				})
+				.catch(function(error){
+					//error adding pts
+					console.log("error adding pts", error);
+					res.sendFile(path.join(__dirname, '/public/addPts.html'));
 
+				})
 			})
 		})
 		.catch(function(error){
@@ -126,6 +151,7 @@ app.post('/addPts', function(req,res){
 		res.sendFile(path.join(__dirname, '/public/addPts.html'));
 	}
 });
+
 
 
 //Main page
