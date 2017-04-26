@@ -166,26 +166,6 @@ app.get('/',function(req,res){
 	res.sendFile(path.join(__dirname, '/public/test_signup.html'));
 });
 
-app.get('/addPts',function(req,res){
-	console.log("add pts hit");
-	res.sendFile(path.join(__dirname, '/public/addPts.html'));
-});
-
-app.get('/scrolling',function(req,res){
-	console.log("scrolling hit");
-	res.sendFile(path.join(__dirname, '/public/index2.html'));
-});
-
-// /hidden directory 
-app.get('/flag',function(req,res){
-	res.sendFile(path.join(__dirname, '/public/flag.html'));
-});
-
-app.get('/robots.txt',function(req,res){
-	console.log("robots found!");
-	res.sendFile(path.join(__dirname, '/public/robots.html'));
-});
-
 // /profile/name directory  - using pug
 app.get('/profile/:name',function(req,res){
 	console.log("profile page");
