@@ -36,6 +36,7 @@ app.post('/login', function(req,res){
 
 });
 
+
 //Adds new sign up - firstName, lastName, password, confirmPassword, email  
 app.post('/signup', function(req,res){
 	console.log("sign up attempt");
@@ -166,12 +167,13 @@ app.get('/',function(req,res){
 	res.sendFile(path.join(__dirname, '/public/test_signup.html'));
 });
 
-// /profile/name directory  - using pug
+// Demo funcs for local testing 
 app.get('/profile/:name',function(req,res){
 	console.log("profile page");
-	res.sendFile(path.join(__dirname, '/public/profile.html'));
-	//console.log(req.params.name);
-	//res.render('profile', { name: req.params.name });
+	var date = new Date()
+	var data = { "first_name" : req.params.name, "last_name" : "Demo", "email_address" : "demo@demo.com", "background_color" : "#0000FF", "signup_date" : date }
+	res.render('profile', { data: data });
+
 });
 
 app.get('/*',function(req,res){
