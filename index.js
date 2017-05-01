@@ -53,8 +53,12 @@ app.post('/login', function(req,res){
 	})
 	.catch(function(error){
 		//email and password are wrong  
-		console.log("error", error);
-		res.sendFile(path.join(__dirname, '/public/InvalidLogin.html'));
+		//DEMO - REMOVE BEFORE PROD
+		var date = new Date()
+		var data = { "first_name" : req.params.name, "last_name" : "Demo", "email_address" : "demo@demo.com", "background_color" : "#0000FF", "exp_pts" : 45, "signup_date" : date }
+		res.render('profile', { data: data });
+		//console.log("error", error);
+		//res.sendFile(path.join(__dirname, '/public/InvalidLogin.html'));
 	})
 
 });
@@ -200,12 +204,13 @@ app.get('/',function(req,res){
 	res.sendFile(path.join(__dirname, '/public/test_signup.html'));
 });
 
-// /profile/name directory  - using pug
+// Demo funcs for local testing 
 app.get('/profile/:name',function(req,res){
 	console.log("profile page");
-	res.sendFile(path.join(__dirname, '/public/profile.html'));
-	//console.log(req.params.name);
-	//res.render('profile', { name: req.params.name });
+	var date = new Date()
+	var data = { "first_name" : req.params.name, "last_name" : "Demo", "email_address" : "demo@demo.com", "background_color" : "#0000FF", "signup_date" : date }
+	res.render('profile', { data: data });
+
 });
 
 app.get('/*',function(req,res){
