@@ -11,27 +11,41 @@ var port = process.env.PORT || 8080;
 
 var db = pgp('postgres://djlciyuhmnrckz:863b9dcbf6f076e322b38b2e2e62812b5ca32f301205941fb0c2b8725cf1cf9d@ec2-54-235-72-121.compute-1.amazonaws.com:5432/ddv40oul581abb');
 
+var sess = {
+  secret: 'keyboard cat',
+  cookie: { maxAge: 30000 }
+};
+ 
+if (app.get('env') === 'production') {
+  app.set('trust proxy', 1) // trust first proxy 
+  sess.cookie.secure = true // serve secure cookies 
+}
+ 
+app.use(session(sess));
+
+
+
+// Access the session as req.session 
+app.get('/cookie', function(req, res, next) {
+  var sess = req.session;
+  if (sess.views) {
+    sess.views++;
+    res.setHeader('Content-Type', 'text/html');
+    res.write('<p>views: ' + sess.views + '</p>');
+    res.write('<p>session id: ' + sess.id + '</p>');
+    res.write('<p>cookie: ' + sess.cookie.maxAge + '</p>');
+    res.write('<p>userId: ' + sess.userId + '</p>');
+    res.write('<p>expires in: ' + (sess.cookie.maxAge / 1000) + 's</p>');
+    res.end();
+  } else {
+    sess.views = 1;
+    res.end('welcome to the session demo. refresh!');
+  }
+});
+
+
 //Tells express to look in the public folder for the assets 
 app.use(express.static(__dirname + '/public'));
-
-//Initialize the session
-app.use(session({secret: 'sshh'}));
-
-var sess;
-app.get('/',function(req,res){
-sess = req.session;
-//Session set when user Request our app via URL
-if(sess.email) {
-/*
-* This line check Session existence.
-* If it existed will do some action.
-*/
-    res.redirect('/admin');
-}
-else {
-    res.render('/login');
-}
-});
 
 //Use pug for templated pages
 app.set('view engine', 'pug')
@@ -41,37 +55,20 @@ app.use(bodyParser.urlencoded({ extended: true}));
 //Search database for matching params - email and password 
 app.post('/login', function(req,res){
 	console.log("login attempt");
-	sess = req.session;
 	db.one('SELECT * FROM users WHERE email_address=$1 AND password=$2', [req.body.email, req.body.password])
 	.then(function(data){
 		//email and password are correct 
-		console.log("log in found user: " + data["first_name"])
+		console.log("log in found user: " + data["first_name"]);
+		req.session.userId = data["user_id"];
 		res.render('profile', { data: data });
 		//res.sendFile(path.join(__dirname, '/public/profile.html'));
-		sess.email=req.body.email;
-		res.end('done');
 	})
 	.catch(function(error){
 		//email and password are wrong  
-		//DEMO - REMOVE BEFORE PROD
-		var date = new Date()
-		var data = { "first_name" : req.params.name, "last_name" : "Demo", "email_address" : "demo@demo.com", "background_color" : "#0000FF", "exp_pts" : 45, "signup_date" : date }
-		res.render('profile', { data: data });
-		//console.log("error", error);
-		//res.sendFile(path.join(__dirname, '/public/InvalidLogin.html'));
+		console.log("error", error);
+		res.sendFile(path.join(__dirname, '/public/InvalidLogin.html'));
 	})
 
-});
-
-app.get('/admin',function(req,res){
-  sess = req.session;
-if(sess.email) {
-res.write('<h1>Hello '+sess.email+'</h1>');
-res.end('<a href="+">Logout</a>');
-} else {
-    res.write('<h1>Please login first.</h1>');
-    res.end('<a href="+">Login</a>');
-}
 });
 
 //Adds new sign up - firstName, lastName, password, confirmPassword, email  
@@ -100,10 +97,12 @@ app.post('/signup', function(req,res){
 			console.log("Email address cannot contain spaces");
 			res.sendFile(path.join(__dirname, '/public/test.html'));
 		} else {
-			//Ok to sign up user 
+			//Ok to sign up user
 			var date = new Date()
-			db.none('INSERT INTO users (first_name, last_name, email_address, password, signup_date, id_num, background_color, exp_pts) VALUES ($1,$2,$3,$4,$5,$6,$7,$8)', [req.body.firstName, req.body.lastName, req.body.email, req.body.password, date, randStr.generate(10), '#ff0000', 5]);
+			var id = randStr.generate(10)
+			db.none('INSERT INTO users (first_name, last_name, email_address, password, signup_date, id_num, background_color, exp_pts) VALUES ($1,$2,$3,$4,$5,$6,$7,$8)', [req.body.firstName, req.body.lastName, req.body.email, req.body.password, date, id, '#ff0000', 5]);
 			console.log("made user!")
+			req.session.userId = id;
 			res.sendFile(path.join(__dirname, '/public/test_login.html'));
 		}
 	})
@@ -204,13 +203,12 @@ app.get('/',function(req,res){
 	res.sendFile(path.join(__dirname, '/public/test_signup.html'));
 });
 
-// Demo funcs for local testing 
+// /profile/name directory  - using pug
 app.get('/profile/:name',function(req,res){
 	console.log("profile page");
-	var date = new Date()
-	var data = { "first_name" : req.params.name, "last_name" : "Demo", "email_address" : "demo@demo.com", "background_color" : "#0000FF", "signup_date" : date }
-	res.render('profile', { data: data });
-
+	res.sendFile(path.join(__dirname, '/public/profile.html'));
+	//console.log(req.params.name);
+	//res.render('profile', { name: req.params.name });
 });
 
 app.get('/*',function(req,res){
