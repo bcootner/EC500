@@ -6,11 +6,12 @@
   "scripts": {
     "start": "node index.js"
   },
-  "author": "Ben Cootner",
+  "authors": "Ben Cootner, Inna Turshudzhyan, Sam Beaulieu, Dennis Your",
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.17.1",
     "express": "^4.14.0",
+    "express-session": "^1.7.6",
     "path": "^0.12.7",
     "pg-promise": "^5.5.8",
     "pug": "^2.0.0-beta10",

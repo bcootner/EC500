@@ -1,6 +1,7 @@
 'use stric';
 
 var express = require('express');
+var session = require('express-session');
 var bodyParser = require('body-parser');
 var path = require('path');
 var pgp = require('pg-promise')();
@@ -13,6 +14,25 @@ var db = pgp('postgres://djlciyuhmnrckz:863b9dcbf6f076e322b38b2e2e62812b5ca32f30
 //Tells express to look in the public folder for the assets 
 app.use(express.static(__dirname + '/public'));
 
+//Initialize the session
+app.use(session({secret: 'sshh'}));
+
+var sess;
+app.get('/',function(req,res){
+sess = req.session;
+//Session set when user Request our app via URL
+if(sess.email) {
+/*
+* This line check Session existence.
+* If it existed will do some action.
+*/
+    res.redirect('/admin');
+}
+else {
+    res.render('index.html');
+}
+});
+
 //Use pug for templated pages
 app.set('view engine', 'pug')
 
@@ -21,12 +41,15 @@ app.use(bodyParser.urlencoded({ extended: true}));
 //Search database for matching params - email and password 
 app.post('/login', function(req,res){
 	console.log("login attempt");
+	sess = req.session;
 	db.one('SELECT * FROM users WHERE email_address=$1 AND password=$2', [req.body.email, req.body.password])
 	.then(function(data){
 		//email and password are correct 
 		console.log("log in found user: " + data["first_name"])
 		res.render('profile', { data: data });
 		//res.sendFile(path.join(__dirname, '/public/profile.html'));
+		sess.email=req.body.email;
+		res.end('done');
 	})
 	.catch(function(error){
 		//email and password are wrong  
@@ -34,6 +57,17 @@ app.post('/login', function(req,res){
 		res.sendFile(path.join(__dirname, '/public/InvalidLogin.html'));
 	})
 
+});
+
+app.get('/admin',function(req,res){
+  sess = req.session;
+if(sess.email) {
+res.write('<h1>Hello '+sess.email+'</h1>');
+res.end('<a href="+">Logout</a>');
+} else {
+    res.write('<h1>Please login first.</h1>');
+    res.end('<a href="+">Login</a>');
+}
 });
 
 //Adds new sign up - firstName, lastName, password, confirmPassword, email  
