@@ -29,7 +29,7 @@ if(sess.email) {
     res.redirect('/admin');
 }
 else {
-    res.render('index.html');
+    res.render('/login');
 }
 });
 
