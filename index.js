@@ -217,7 +217,7 @@ app.post('/back_color', function(req,res){
 	console.log(req.body.text_color)
 	//CHANGE TO CURRENT COOKIE ID
 	var userId = "ASTUQbBLNo"
-	db.none("UPDATE users SET background_color = $ 1 WHERE id_num = $2", [req.body.text_color, userId])
+	db.none("UPDATE users SET background_color = $1 WHERE id_num = $2", [req.body.text_color, userId])
 	.then(function(data) {
 		console.log("background color changed")
 		res.render('profile', { data: data });
@@ -225,6 +225,7 @@ app.post('/back_color', function(req,res){
 	.catch(function(error){
 		console.log("error changing background color")
 		console.log(error)
+		res.error(error)
 	})
 
 });
