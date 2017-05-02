@@ -232,20 +232,29 @@ app.get('/',function(req,res){
 	}
 });
 
-// /profile/name directory  - using pug
-app.get('/profile/:name',function(req,res){
-	console.log("profile page");
-	//console.log(req.params.name);
-	//res.render('profile', { name: req.params.name });
+
+//get all of the posts
+app.get('/feed',function(req,res){
+	console.log("feed hit");
+	db.any("SELECT * from posts")
+	.then(function(data){
+		//got all posts 
+		console.log(data)
+	})
+	.catch(function(error){
+		//error adding pts
+		console.log("error adding pts", error);
+
+	})
 });
+
 
 //Change background color
 app.post('/back_color', function(req,res){
 	console.log("back_color attempt");
 	console.log(req.body.text_color)
-	//CHANGE TO CURRENT COOKIE ID
-	var userId = "ASTUQbBLNo"
-	db.none("UPDATE users SET background_color = $1 WHERE id_num = $2", [req.body.text_color, userId])
+	var sess = req.session;
+	db.none("UPDATE users SET background_color = $1 WHERE id_num = $2", [req.body.text_color, sess.userId])
 	.then(function(data) {
 		console.log("background color changed")
 		var sess = req.session;
@@ -280,7 +289,27 @@ app.post('/back_color', function(req,res){
 app.post('/post', function(req,res){
 	console.log("post attempt");
 	console.log(req.body)
-	
+	var sess = req.session;
+	if (sess.userId != null)
+	{
+		//add a post
+		var date = new Date()
+		db.none('INSERT INTO posts (posted_by, text, font, bg_color, font_size, priority, likes, dislikes, posted_date) VALUES ($1,$2,$3,$4,$5,$6,$7,$8, $9)', [sess.userId, req.body.postEntry, req.body.font, req.body.bg_color, req.body.size, 0, 0, 0, date]);
+		db.one('SELECT * FROM users WHERE id_num=$1', [sess.userId])
+			.then(function(data){
+				req.session.userId = data["id_num"];
+				res.render('profile', { data: data });
+			})
+			.catch(function(error){
+				//email and password are wrong  
+				console.log("error", error);
+				res.sendFile(path.join(__dirname, '/public/InvalidLogin.html'));
+		})
+	}
+	else
+	{
+		res.sendFile(path.join(__dirname, '/public/signup.html'));
+	}
 });
 
 app.get('/*',function(req,res){

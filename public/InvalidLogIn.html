@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Life is a Game Login</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+
+<link rel="stylesheet" href="testStyle.css">
+
+  
+</head>
+
+<body>
+  
+<div class="container">
+  <div class="info">
+    <h1>Life is a Game</h1><span><h2>Start Here</h2></span>
+  </div>
+</div>
+
+<div class="form">
+  <div class = "error">
+    Invalid username/password
+  </div>
+  <form action="/login" id="login_form_id" method="post" name="login_form" id="Login" class="login-form">
+    <input type="text" name="email" id="email" placeholder="email" required/>
+    <input type="password" name="password" id="password" placeholder="password" required/>
+    <input type="submit" class="login" value="Login" id="submit"/>
+    <p class="message">Not registered? <a href="index.html">Create an account</a></p>
+  </form>
+</div>
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+  <script src="testScripts.js"></script>
+
+</body>
+</html>
