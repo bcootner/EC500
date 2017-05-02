@@ -13,7 +13,7 @@ var db = pgp('postgres://djlciyuhmnrckz:863b9dcbf6f076e322b38b2e2e62812b5ca32f30
 
 var sess = {
   secret: 'keyboard cat',
-  cookie: { maxAge: 10000 },
+  cookie: { maxAge: 300000 },
   proxy: true,
   resave: true,
   saveUninitialized: true
@@ -228,7 +228,6 @@ app.get('/',function(req,res){
 // /profile/name directory  - using pug
 app.get('/profile/:name',function(req,res){
 	console.log("profile page");
-	//res.sendFile(path.join(__dirname, '/public/profile.html'));
 	//console.log(req.params.name);
 	//res.render('profile', { name: req.params.name });
 });
@@ -242,7 +241,7 @@ app.post('/back_color', function(req,res){
 	db.none("UPDATE users SET background_color = $1 WHERE id_num = $2", [req.body.text_color, userId])
 	.then(function(data) {
 		console.log("background color changed")
-		res.render('profile', { data: data });
+		res.sendFile(path.join(__dirname, '/'));
 	})
 	.catch(function(error){
 		console.log("error changing background color")
