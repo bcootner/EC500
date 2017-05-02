@@ -203,13 +203,31 @@ app.post('/addPts', function(req,res){
 //Main page
 app.get('/',function(req,res){
 	console.log("homepage hit");
-	res.sendFile(path.join(__dirname, '/public/test_signup.html'));
+	var sess = req.session;
+	if (sess.userId != null)
+	{
+		//log user in 
+		db.one('SELECT * FROM users WHERE id_num=$1', [sess.userId])
+			.then(function(data){
+				req.session.userId = data["id_num"];
+				res.render('profile', { data: data });
+			})
+			.catch(function(error){
+				//email and password are wrong  
+				console.log("error", error);
+				res.sendFile(path.join(__dirname, '/public/InvalidLogin.html'));
+		})
+	}
+	else
+	{
+		res.sendFile(path.join(__dirname, '/public/signup.html'));
+	}
 });
 
 // /profile/name directory  - using pug
 app.get('/profile/:name',function(req,res){
 	console.log("profile page");
-	res.sendFile(path.join(__dirname, '/public/profile.html'));
+	//res.sendFile(path.join(__dirname, '/public/profile.html'));
 	//console.log(req.params.name);
 	//res.render('profile', { name: req.params.name });
 });
