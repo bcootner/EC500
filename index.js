@@ -13,9 +13,12 @@ var db = pgp('postgres://djlciyuhmnrckz:863b9dcbf6f076e322b38b2e2e62812b5ca32f30
 
 var sess = {
   secret: 'keyboard cat',
-  cookie: { maxAge: 10000 }
+  cookie: { maxAge: 10000 },
+  proxy: true,
+  resave: true,
+  saveUninitialized: true
 };
- 
+
 if (app.get('env') === 'production') {
   app.set('trust proxy', 1) // trust first proxy 
   sess.cookie.secure = true // serve secure cookies 
