@@ -18,7 +18,9 @@ html
                     -   var points = data.exp_pts;
                     p= points
                 .logout(style='float: right')
-                    img(src="https://cdn2.iconfinder.com/data/icons/picons-essentials/57/logout-512.png" style="width: 80px; padding-right: 10px")
+                    <form action="/logout" id="logout" method="post" name="logout">
+                        <input type="image" src="https://cdn2.iconfinder.com/data/icons/picons-essentials/57/logout-512.png" style="width: 80px; padding-right: 10px"/>
+                    </form>
         #experience_bar(style=styling)
             -   var points = data.exp_pts ;
             -   var label = "Currently at " + points + " of 100 points towards next feature";
