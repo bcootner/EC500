@@ -214,7 +214,7 @@ app.get('/profile/:name',function(req,res){
 //Change background color
 app.post('/back_color', function(req,res){
 	console.log("back_color attempt");
-	console.log(req.body)
+	console.log(req.body.text_color)
 	//CHANGE TO CURRENT COOKIE ID
 	var userId = "ASTUQbBLNo"
 	db.none("UPDATE users SET background_color = $ 1 WHERE id_num = $2", [req.body.text_color, userId])
@@ -223,7 +223,8 @@ app.post('/back_color', function(req,res){
 		res.render('profile', { data: data });
 	})
 	.catch(function(error){
-		console.log("error chaning background color")
+		console.log("error changing background color")
+		console.log(error)
 	})
 
 });
@@ -231,19 +232,8 @@ app.post('/back_color', function(req,res){
 //Add a post 
 app.post('/post', function(req,res){
 	console.log("post attempt");
-	db.one('SELECT * FROM users WHERE email_address=$1 AND password=$2', [req.body.email, req.body.password])
-	.then(function(data){
-		//email and password are correct 
-		console.log("log in found user: " + data["first_name"]);
-		req.session.userId = data["user_id"];
-		res.render('profile', { data: data });
-		//res.sendFile(path.join(__dirname, '/public/profile.html'));
-	})
-	.catch(function(error){
-		//email and password are wrong  
-		console.log("error", error);
-		res.sendFile(path.join(__dirname, '/public/InvalidLogin.html'));
-	})
+	console.log(req.body)
+	
 });
 
 app.get('/*',function(req,res){
