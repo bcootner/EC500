@@ -15,25 +15,62 @@ html
                     -   var last = data.last_name;
                     -   var header = first + ' ' + last;
                     p= header
+                    -   var points = data.exp_pts;
+                    p= points
         #experience_bar(style=styling)
             -   var points = data.exp_pts ;
             -   var label = "Currently at " + points + " of 100 points towards next feature";
             p(style='text-align: center; margin = 0px')= label
         #clearer
         #main_content
-            .panels.left(style=styling)
-                h2 Your Email:
-                p= data.email_address
+
+            if data.exp_pts >= 10
+                .panels.left(style=styling)
+                    h2 Set your background color!
+                    <form action="/back_color" id="user_color_form" method="post" name="back_form" id="backForm">
+                        <input type="color" name="text_color">
+                        p
+                        <input type="submit" value="Submit" id="submit"/>
+                    </form>
+
             .panels.right(style=styling)
-                h2 Personal Feed:
-                p This 
-                p will
-                p be
-                p your
-                p feeeed
-                p very
-                p cool
-                p right
+                h2 Make A Post:
+                <textarea id="postEntry" rows="4" cols="100" form="user_post_form">Enter post here...</textarea>
+
+                <form action="/post" id="user_post_form" method="post" name="post_form" id="postForm">
+                    p 
+                    if data.exp_pts >= 400
+                        | Text: <input type="color" name="text_color">
+                    if data.exp_pts >= 100
+                        | Background: <input type="color" name="bg_color"> 
+                    if data.exp_pts >= 200
+                        | Size: <select>
+                        |           <option value="8">8</option>
+                        |           <option value="9">9</option>
+                        |           <option value="10">10</option>
+                        |           <option value="11">11</option>
+                        |           <option value="12">12</option>
+                        |           <option value="13">13</option>
+                        |           <option value="14">14</option>
+                        |           <option value="15">15</option>
+                        |           <option value="16">16</option>
+                        |           <option value="17">17</option>
+                        |           <option value="18">18</option>
+                        |           <option value="19">19</option>
+                        |           <option value="20">20</option>
+                        |        </select> 
+                    if data.exp_pts >= 50
+                        | Font: <select>
+                        |          <option value="Arial">Arial</option>
+                        |          <option value="Courier New">Courier New</option>
+                        |          <option value="Georgia">Georgia</option>
+                        |          <option value="Times New Roman">Times New Roman</option>
+                        |          <option value="Verdana">Verdana</option>
+                        |        </select>
+                    p
+                    <input type="submit" value="Submit" id="submit"/>
+                </form>
+
             .panels.left(style=styling)
                 h2 Signup Date:
                 p= data.signup_date
