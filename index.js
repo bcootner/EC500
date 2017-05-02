@@ -236,7 +236,7 @@ app.get('/',function(req,res){
 //get all of the posts
 app.get('/feed',function(req,res){
 	console.log("feed hit");
-	db.none("SELECT * from posts")
+	db.any("SELECT * from posts")
 	.then(function(data){
 		//got all posts 
 		console.log(data)
@@ -244,7 +244,6 @@ app.get('/feed',function(req,res){
 	.catch(function(error){
 		//error adding pts
 		console.log("error adding pts", error);
-		res.sendFile(path.join(__dirname, '/public/addPts.html'));
 
 	})
 });
