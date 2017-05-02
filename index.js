@@ -254,9 +254,8 @@ app.get('/feed',function(req,res){
 app.post('/back_color', function(req,res){
 	console.log("back_color attempt");
 	console.log(req.body.text_color)
-	//CHANGE TO CURRENT COOKIE ID
-	var userId = "ASTUQbBLNo"
-	db.none("UPDATE users SET background_color = $1 WHERE id_num = $2", [req.body.text_color, userId])
+	var sess = req.session;
+	db.none("UPDATE users SET background_color = $1 WHERE id_num = $2", [req.body.text_color, sess.userId])
 	.then(function(data) {
 		console.log("background color changed")
 		var sess = req.session;
@@ -291,6 +290,7 @@ app.post('/back_color', function(req,res){
 app.post('/post', function(req,res){
 	console.log("post attempt");
 	console.log(req.body)
+	var sess = req.session;
 	if (sess.userId != null)
 	{
 		//add a post
