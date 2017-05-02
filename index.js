@@ -80,7 +80,7 @@ app.post('/signup', function(req,res){
 	.then(function(data){
 		//email is alreay in db
 		console.log("sign up found user " + data)
-		res.sendFile(path.join(__dirname, '/public/test_signup.html'));
+		res.sendFile(path.join(__dirname, '/public/InvalidSignUps/emailinuse.html'));
 
 	})
 	.catch(function(error){
@@ -88,16 +88,16 @@ app.post('/signup', function(req,res){
 		console.log("not found: ", error);
 		if(req.body.password != req.body.confirmPassword) {
 			console.log("Passwords do not match!");
-			res.sendFile(path.join(__dirname, '/public/test.html'));
-		} else if (req.body.password.length < 1) {
-			console.log("Password must contain at least 1 characters!");
-			res.sendFile(path.join(__dirname, '/public/test.html'));
+			res.sendFile(path.join(__dirname, '/public/InvalidSignUps/passwordsnotmatch.html'));
+		} else if (req.body.password.length <= 6) {
+			console.log("Password must contain  6 characters!");
+			res.sendFile(path.join(__dirname, '/public/InvalidSignUps/passwordnotlong.html'));
 		} else if (req.body.email.indexOf('@') == -1) {
 			console.log("Email address is not valid!");
-			res.sendFile(path.join(__dirname, '/public/test.html'));
+			res.sendFile(path.join(__dirname, '/public/InvalidSignUps/invalidemail.html'));
 		} else if (req.body.email.indexOf(' ') > -1) {
 			console.log("Email address cannot contain spaces");
-			res.sendFile(path.join(__dirname, '/public/test.html'));
+			res.sendFile(path.join(__dirname, '/public/InvalidSignUps/invalidemail.html'));
 		} else {
 			//Ok to sign up user
 			var date = new Date()
