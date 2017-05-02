@@ -39,9 +39,9 @@ html
 
             .panels.right(style=styling)
                 h2 Make A Post:
-                <textarea id="postEntry" rows="4" cols="100" form="user_post_form">Enter post here...</textarea>
-
+                
                 <form action="/post" id="user_post_form" method="post" name="post_form" id="postForm">
+                    <textarea id="postEntry" name="postEntry" rows="4" cols="100">Enter post here...</textarea>
                     p 
                     if data.exp_pts >= 400
                         | Text: <input type="color" name="text_color">
