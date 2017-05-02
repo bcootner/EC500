@@ -55,6 +55,13 @@ app.set('view engine', 'pug')
 
 app.use(bodyParser.urlencoded({ extended: true}));
 
+//log out function 
+app.post('/logout', function(req,res){
+	console.log("log out attempt");
+	req.session.userId = null
+	res.sendFile(path.join(__dirname, '/public/signup.html'));
+});
+
 //Search database for matching params - email and password 
 app.post('/login', function(req,res){
 	console.log("login attempt");
