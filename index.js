@@ -64,7 +64,6 @@ app.post('/login', function(req,res){
 		console.log("log in found user: " + data["first_name"]);
 		req.session.userId = data["id_num"];
 		res.render('profile', { data: data });
-		//res.sendFile(path.join(__dirname, '/public/profile.html'));
 	})
 	.catch(function(error){
 		//email and password are wrong  
@@ -106,7 +105,9 @@ app.post('/signup', function(req,res){
 			db.none('INSERT INTO users (first_name, last_name, email_address, password, signup_date, id_num, background_color, exp_pts) VALUES ($1,$2,$3,$4,$5,$6,$7,$8)', [req.body.firstName, req.body.lastName, req.body.email, req.body.password, date, id, '#ff0000', 5]);
 			console.log("made user!")
 			req.session.userId = id;
-			res.sendFile(path.join(__dirname, '/public/test_login.html'));
+			//now log them in 
+			var data = {"first_name": req.body.firstName, "last_name": req.body.lastName, "email_address": req.body.email, "signup_date": date, "background_color":"#ff0000", "exp_pts": 5}
+			res.render('profile', { data: data });
 		}
 	})
 
