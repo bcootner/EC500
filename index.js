@@ -62,7 +62,7 @@ app.post('/login', function(req,res){
 	.then(function(data){
 		//email and password are correct 
 		console.log("log in found user: " + data["first_name"]);
-		req.session.userId = data["user_id"];
+		req.session.userId = data["id_num"];
 		res.render('profile', { data: data });
 		//res.sendFile(path.join(__dirname, '/public/profile.html'));
 	})
