@@ -241,7 +241,25 @@ app.post('/back_color', function(req,res){
 	db.none("UPDATE users SET background_color = $1 WHERE id_num = $2", [req.body.text_color, userId])
 	.then(function(data) {
 		console.log("background color changed")
-		res.sendFile(path.join(__dirname, '/'));
+		var sess = req.session;
+		if (sess.userId != null)
+		{
+			//log user in 
+			db.one('SELECT * FROM users WHERE id_num=$1', [sess.userId])
+				.then(function(data){
+					req.session.userId = data["id_num"];
+					res.render('profile', { data: data });
+				})
+				.catch(function(error){
+					//email and password are wrong  
+					console.log("error", error);
+					res.sendFile(path.join(__dirname, '/public/InvalidLogin.html'));
+			})
+		}
+		else
+		{
+			res.sendFile(path.join(__dirname, '/public/signup.html'));
+		}
 	})
 	.catch(function(error){
 		console.log("error changing background color")
