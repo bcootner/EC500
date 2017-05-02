@@ -214,6 +214,32 @@ app.get('/profile/:name',function(req,res){
 	//res.render('profile', { name: req.params.name });
 });
 
+//Change background color
+app.post('/back_color', function(req,res){
+	console.log("back_color attempt");
+	console.log(req.body.text_color)
+	//CHANGE TO CURRENT COOKIE ID
+	var userId = "ASTUQbBLNo"
+	db.none("UPDATE users SET background_color = $1 WHERE id_num = $2", [req.body.text_color, userId])
+	.then(function(data) {
+		console.log("background color changed")
+		res.render('profile', { data: data });
+	})
+	.catch(function(error){
+		console.log("error changing background color")
+		console.log(error)
+		res.error(error)
+	})
+
+});
+
+//Add a post 
+app.post('/post', function(req,res){
+	console.log("post attempt");
+	console.log(req.body)
+	
+});
+
 app.get('/*',function(req,res){
 	res.sendFile(path.join(__dirname, '/public/errorPage.html'));
 });
