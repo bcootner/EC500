@@ -41,8 +41,19 @@ html
                 h2 Make A Post:
                 
                 <form action="/post" id="user_post_form" method="post" name="post_form" id="postForm">
-                    <textarea id="postEntry" name="postEntry" rows="4" cols="100" placeholder="Enter post here..."></textarea>
-                    p 
+
+                    if data.exp_pts <= 999
+                        <textarea id="postEntry" name="postEntry" rows="4" cols="100" placeholder="Enter post here..." maxlength=data.exp_pts></textarea>
+                    else
+                        <textarea id="postEntry" name="postEntry" rows="4" cols="100" placeholder="Enter post here..." maxlength="999"></textarea>
+
+                    <input type="hidden" name="firstName" value=data.first_name>
+                    <input type="hidden" name="lastName" value=data.last_name>
+                    p
+                    if data.exp_pts >= 500
+                        | Text: <input type="hidden" name="priority" value="1"> 
+                    else
+                        | Text: <input type="hidden" name="priority" value="0"> 
                     if data.exp_pts >= 400
                         | Text: <input type="color" name="text_color" value="#000000">
                     if data.exp_pts >= 100
