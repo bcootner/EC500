@@ -124,6 +124,13 @@ body:before {
   height: 100%;
 }
 
+div .error {
+  background-color:#EF3B3A; 
+  font-size: 14px;
+  padding: 6px;
+  color:white
+}
+
 #video {
   z-index: -99;
   position: fixed;
