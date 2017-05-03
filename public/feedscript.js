@@ -9,9 +9,11 @@ window.onload = function(){
 		all_posts.item(i).innerHTML = data[i]['text'];
 	}
 	var my_posts = document.getElementsByClassName("grid-item-posts");
+	my_posts.item(0).innerHTML = myPosts[0]['text'];
+	/*
 	for (var i = myPosts.length - 1; i >= 0; i--) {
 		my_posts.item(i).innerHTML = myPosts[i]['text'];
-	}
+	}*/
 /*var all_posts = document.getElementsByClassName("post");
 for(var i = 0; i < all_posts.length; i++)
 {
