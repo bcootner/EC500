@@ -314,20 +314,23 @@ app.post('/post', function(req,res){
 				.then(function(ach){
 					//found an achievment that matches 
 					//check if user has entered this ach before 
+					console.log("founc achi matching post")
 					db.one("SELECT * FROM transactions WHERE user_id=$1 AND ach_id=$2", [sess.userId, ach["ach_id"]])
 					.then(function(transaction){
 						//found transaction already entered this post and got points 
-						res.render('profile', { data: data, error: "You already got points for this post", message: "" });
+						console.log("Already got points for ach")
+						res.render('profile', { data: data, error: "You already unlocked the " ach["name"] +  "achievement", message: "" });
 					})
 					.catch(function(error){
 						//not yet entered give points and add to transaction table
+						console.log("Give points!")
 						var pts = Number(data["exp_pts"])
 						var newPts = pts + Number(ach["pts"])
 						db.none("UPDATE users SET exp_pts = $1 WHERE id_num = $2", [newPts, sess.userId ])
 						req.session.userId = data["id_num"];
 						var date = new Date()
 						db.none('INSERT INTO transactions (user_id, ach_id, added_date) VALUES ($1,$2,$3)', [sess.userId, ach["ach_id"], date]);
-						res.render('profile', { data: data, error: "You unlocked the " + ach["name"] + "achivment", message: "" });
+						res.render('profile', { data: data, error: "You unlocked the " + ach["name"] + " achievements", message: "" });
 
 					})
 				})
@@ -335,6 +338,7 @@ app.post('/post', function(req,res){
 					//no achivment found for post 
 					//just a post 
 					//add pts for a new post 
+					console.log("No achi matching post")
 					var pts = Number(data["exp_pts"])
 					var newPts = pts + 10
 					console.log(newPts)
