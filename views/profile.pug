@@ -47,8 +47,10 @@ html
                     else
                         <textarea id="postEntry" name="postEntry" rows="4" cols="100" placeholder="Enter post here..." maxlength="999"></textarea>
 
-                    <input type="hidden" name="firstName" value=data.first_name>
-                    <input type="hidden" name="lastName" value=data.last_name>
+                    -   var first = data.first_name;
+                    -   var last = data.last_name;
+                    <input type="hidden" name="firstName" value=first>
+                    <input type="hidden" name="lastName" value=last>
                     p
                     if data.exp_pts >= 500
                         | Text: <input type="hidden" name="priority" value="1"> 
