@@ -4,6 +4,11 @@ only text based posts
 */
 // external JS: masonry.pkgd.js
 
+var all_posts = document.getElementsByClassName("posts");
+for (var i=0; i<data.length; i++){
+	all_posts.item(i).innerHTML = data[i]['text']
+}
+
 var $grid = $('.grid').masonry({
 	itemSelector: '.grid-item',
 	//columnWidth: 160
@@ -15,7 +20,7 @@ var modal = document.getElementById('myModal');
 var span = document.getElementsByClassName("close")[0];
 var content = document.getElementById('postContent');
 
-$grid.on( 'click', '.post', function() {
+$grid.on( 'click', '.grid-item-posts', function() {
 	// change size of item via class
 	$( this ).addClass('grid-item-others');
 //  var elem = document.createElement("img");
