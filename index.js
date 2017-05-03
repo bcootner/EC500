@@ -344,7 +344,7 @@ app.post('/post', function(req,res){
 					//add pts for a new post 
 					console.log("No achi matching post")
 					var pts = Number(data["exp_pts"])
-					var newPts = pts + 10
+					var newPts = pts + 5
 					console.log(newPts)
 					db.none("UPDATE users SET exp_pts = $1 WHERE id_num = $2", [newPts, sess.userId ])
 					data["exp_pts"] = newPts
