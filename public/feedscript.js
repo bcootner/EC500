@@ -18,7 +18,7 @@ window.onload = function(){
 			break;
 		}
 		all_posts.item(j).innerHTML = data[i]['text'];
-		all_posts.item(j).style.backgroundColor = "red";
+		all_posts.item(j).style.backgroundColor = data[i]['bg_color'];
 		j++;
 	}
 	var my_posts = document.getElementsByClassName("grid-item-posts");
