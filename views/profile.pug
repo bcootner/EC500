@@ -23,7 +23,25 @@ html
                     </form>
         #experience_bar(style=styling)
             -   var points = data.exp_pts ;
-            -   var label = "Currently at " + points + " of 100 points towards next feature";
+            -   var label = "";
+            if (points < 10)
+                - next = 10 - points
+                - label = next + " points until you can change your background!"
+            else if (points < 50)
+                - next = 50 - points
+                - label = next + " points until you can change the font of your posts!"
+            else if (points < 100)
+                - next = 100 - points
+                - label = next + " points until you can change the background color of your posts!"
+            else if (points < 200)
+                - next = 200 - points
+                - label = next + " points until you can change the text size of your posts!"
+            else if (points < 400)
+                - next = 400 - points
+                - label = next + " points until you can change the text color of your posts!"
+            else if (points < 500)
+                - next = 400 - points
+                - label = next + " points until you can change the text color of your posts!"
             p(style='text-align: center; margin = 0px')= label
         #clearer
         #main_content
