@@ -33,7 +33,7 @@ body { font-family: sans-serif; }
 .grid-item-profile { background: #f20202;}
 .grid-item-posts {
 	border: 4px solid #333;
-	border-color: red;
+	border-color: black;
 	background: #ff3535;
 }
 .post{ }
