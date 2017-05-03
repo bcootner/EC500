@@ -17,7 +17,7 @@ window.onload = function(){
 		if (j >= all_posts.length){
 			break;
 		}
-		all_posts.item(j).innerHTML = data[i]['text']+"</br>"+data[i]['first_name']+" "+data[i]['last_name'];
+		all_posts.item(j).innerHTML = data[i]['text']+"</br></br>~"+data[i]['first_name']+" "+data[i]['last_name'];
 		all_posts.item(j).style.backgroundColor = data[i]['bg_color'];
 		all_posts.item(j).style.fontFamily = data[i]['font'];
 		all_posts.item(j).style.fontSize = data[i]['font_size'] + "px";
@@ -31,7 +31,7 @@ window.onload = function(){
 		if (j >= my_posts.length){
 			break;
 		}
-		my_posts.item(j).innerHTML = myPosts[i]['text']+"</br>"+myPosts[i]['first_name']+" "+myPosts[i]['last_name'];
+		my_posts.item(j).innerHTML = myPosts[i]['text']+"</br></br>~"+myPosts[i]['first_name']+" "+myPosts[i]['last_name'];
 		my_posts.item(j).style.backgroundColor = myPosts[i]['bg_color'];
 		my_posts.item(j).style.fontFamily = myPosts[i]['font'];
 		my_posts.item(j).style.fontSize = myPosts[i]['font_size'] + "px";
