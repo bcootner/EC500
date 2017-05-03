@@ -70,7 +70,7 @@ app.post('/login', function(req,res){
 		//email and password are correct 
 		console.log("log in found user: " + data["first_name"]);
 		req.session.userId = data["id_num"];
-		res.render('profile', { data: data });
+		res.render('profile', { data: data, error: "", message: "" });
 	})
 	.catch(function(error){
 		//email and password are wrong  
@@ -114,7 +114,7 @@ app.post('/signup', function(req,res){
 			req.session.userId = id;
 			//now log them in 
 			var data = {"first_name": req.body.firstName, "last_name": req.body.lastName, "email_address": req.body.email, "signup_date": date, "background_color":"#ff0000", "exp_pts": 5}
-			res.render('profile', { data: data });
+			res.render('profile', { data: data, error: "", message: "" });
 		}
 	})
 
@@ -218,7 +218,7 @@ app.get('/',function(req,res){
 		db.one('SELECT * FROM users WHERE id_num=$1', [sess.userId])
 			.then(function(data){
 				req.session.userId = data["id_num"];
-				res.render('profile', { data: data });
+				res.render('profile', { data: data, error: "", message: "" });
 			})
 			.catch(function(error){
 				//email and password are wrong  
@@ -236,16 +236,25 @@ app.get('/',function(req,res){
 //get all of the posts
 app.get('/feed',function(req,res){
 	console.log("feed hit");
-	db.any("SELECT * from posts")
-	.then(function(data){
-		//got all posts 
-		console.log(req.session.userId)
-		console.log(data)
-		res.render('feed', { data: data, userId: req.session.userId });
+	db.any("SELECT * from posts WHERE id_num=$1 ORDER BY posted_date", [req.session.userId])
+	.then(function(myPosts){
+		//got your posts
+		console.log("my posts" + myPosts)
+		db.any("SELECT * from posts WHERE id_num!=$1 ORDER BY posted_date", [req.session.userId])
+		.then(function(otherPosts){
+			//got all other posts
+			console.log("my posts" + otherPosts)
+			res.render('feed', { myPosts: myPosts, data: otherPosts});
+		})
+		.catch(function(error){
+			//error adding pts
+			console.log("error with other posts", error);
+
+		})
 	})
 	.catch(function(error){
 		//error adding pts
-		console.log("error", error);
+		console.log("error with your posts", error);
 
 	})
 });
@@ -266,7 +275,7 @@ app.post('/back_color', function(req,res){
 			db.one('SELECT * FROM users WHERE id_num=$1', [sess.userId])
 				.then(function(data){
 					req.session.userId = data["id_num"];
-					res.render('profile', { data: data });
+					res.render('profile', { data: data, error: "", message: "" });
 				})
 				.catch(function(error){
 					//email and password are wrong  
@@ -303,8 +312,15 @@ app.post('/post', function(req,res){
 				console.log(newPts)
 				db.none("UPDATE users SET exp_pts = $1 WHERE id_num = $2", [newPts, sess.userId ])
 				req.session.userId = data["id_num"];
-				db.none('INSERT INTO posts (posted_by, text, font, bg_color, font_size, first_name, last_name, priority, likes, dislikes, posted_date) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)', [sess.userId, req.body.postEntry, req.body.font, req.body.bg_color, req.body.size, data["first_name"], data["last_name"], req.body.priority, 0, 0, date]);
-				res.render('profile', { data: data });
+				db.onef('INSERT INTO posts (posted_by, text, font, bg_color, font_size, first_name, last_name, priority, likes, dislikes, posted_date) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)', [sess.userId, req.body.postEntry, req.body.font, req.body.bg_color, req.body.size, data["first_name"], data["last_name"], req.body.priority, 0, 0, date]);
+				.then(function(data2){
+					res.render('profile', { data: data, error: "", message: "Post made!" });
+				})
+				.catch(function(error){
+					console.log("error with insert", error)
+					res.render('profile', { data: data, error: "Error with post", message: "" });
+
+				})
 			})
 			.catch(function(error){
 				//email and password are wrong  
