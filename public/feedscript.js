@@ -6,7 +6,7 @@ only text based posts
 var $grid = $('.grid').masonry({
 	itemSelector: '.grid-item',
 	//columnWidth: 160
-	columnWidth: 13%,
+	columnWidth: '.grid-sizer',
 	percentPosition: true
 });
 
@@ -31,7 +31,7 @@ window.onload = function(){
 		j++;
 	}
 	all_posts.item(0).innerHTML = "first post";
-	$grid.masonry();
+	$grid.masonry()
 }
 
 var modal = document.getElementById('myModal');

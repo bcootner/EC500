@@ -31,7 +31,8 @@ html.no-js
 			var data = !{JSON.stringify(data)}
 			var myPosts = !{JSON.stringify(myPosts)}
 		.grid
-			.grid-item.post ello
+			.grid-sizer
+			.grid-item.post hello
 			.grid-item.post
 			.grid-item.post
 			.grid-item.post
@@ -87,5 +88,5 @@ html.no-js
 					span.close &times;
 					p= post_data[0]['likes']
 					#postContent
-		script(src='feedscript.js')
+			script(src='feedscript.js')
 
