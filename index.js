@@ -309,24 +309,62 @@ app.post('/post', function(req,res){
 		var date = new Date()
 		db.one('SELECT * FROM users WHERE id_num=$1', [sess.userId])
 			.then(function(data){
-				var pts = Number(data["exp_pts"])
-				var newPts = pts + 10
-				console.log(newPts)
-				db.none("UPDATE users SET exp_pts = $1 WHERE id_num = $2", [newPts, sess.userId ])
-				req.session.userId = data["id_num"];
-				if (req.body.postEntry.length > 0) {
-					db.none('INSERT INTO posts (posted_by, text, font, bg_color, font_size, first_name, last_name, priority, likes, dislikes, posted_date) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)', [sess.userId, req.body.postEntry, req.body.font, req.body.bg_color, req.body.size, data["first_name"], data["last_name"], req.body.priority, 0, 0, date]);
-					res.render('profile', { data: data, error: "", message: "Post made!" });
-				} else {
-					res.render('profile', { data: data, error: "Error posting your message", message: "" });
-				}
+				//check for a points post 
+				db.one("SELECT * FROM achievements WHERE method=$1 AND key=$2",[0, req.body.postEntry])
+				.then(function(ach){
+					//found an achievment that matches 
+					//check if user has entered this ach before 
+					console.log("founc achi matching post")
+					db.one("SELECT * FROM transactions WHERE user_id=$1 AND ach_id=$2", [sess.userId, ach["ach_id"]])
+					.then(function(transaction){
+						//found transaction already entered this post and got points 
+						console.log("Already got points for ach")
+						res.render('profile', { data: data, error: "You already unlocked the " + ach["name"] +  " achievement", message: "" });
+					})
+					.catch(function(error){
+						//not yet entered give points and add to transaction table
+						console.log("Give points!")
+						var pts = Number(data["exp_pts"])
+						var newPts = pts + Number(ach["pts"])
+						db.none("UPDATE users SET exp_pts = $1 WHERE id_num = $2", [newPts, sess.userId ])
+						data["exp_pts"] = newPts
+						req.session.userId = data["id_num"];
+						var date = new Date()
+						db.none('INSERT INTO transactions (user_id, ach_id, added_date) VALUES ($1,$2,$3)', [sess.userId, ach["ach_id"], date]);
+						res.render('profile', { data: data, error: "You unlocked the " + ach["name"] + " achievement", message: "" });
 
-			})
-			.catch(function(error){
-				//email and password are wrong  
-				console.log("error", error);
-				res.sendFile(path.join(__dirname, '/public/InvalidLogin.html'));
-		})
+					})
+				})
+				.catch(function(error){
+					//no achivment found for post 
+					//just a post 
+					//add pts for a new post 
+					console.log("No achi matching post")
+					var pts = Number(data["exp_pts"])
+					var newPts = pts + 10
+					console.log(newPts)
+					db.none("UPDATE users SET exp_pts = $1 WHERE id_num = $2", [newPts, sess.userId ])
+					data["exp_pts"] = newPts
+					req.session.userId = data["id_num"];
+					if (req.body.postEntry.length > 0) {
+						db.none('INSERT INTO posts (posted_by, text, font, bg_color, font_color, font_size, first_name, last_name, priority, likes, dislikes, posted_date) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12)', [sess.userId, req.body.postEntry, req.body.font, req.body.bg_color, req.body.text_color, req.body.size, data["first_name"], data["last_name"], req.body.priority, 0, 0, date]);
+						res.render('profile', { data: data, error: "", message: "Post made!" });
+					} else {
+						res.render('profile', { data: data, error: "Error posting your message", message: "" });
+					}
+
+					})
+					.catch(function(error){
+						//email and password are wrong  
+						console.log("error", error);
+						res.sendFile(path.join(__dirname, '/public/InvalidLogin.html'));
+					})
+
+				})
+
+
+
+				
 	}
 	else
 	{
