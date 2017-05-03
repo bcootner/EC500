@@ -11,6 +11,7 @@ window.onload = function(){
 			break;
 		}
 		all_posts.item(j).innerHTML = data[i]['text'];
+		all_posts.item(j).style.font-style = data[i]['font']
 		j++;
 	}
 	var my_posts = document.getElementsByClassName("grid-item-posts");
