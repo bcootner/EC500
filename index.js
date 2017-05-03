@@ -312,7 +312,7 @@ app.post('/post', function(req,res){
 				console.log(newPts)
 				db.none("UPDATE users SET exp_pts = $1 WHERE id_num = $2", [newPts, sess.userId ])
 				req.session.userId = data["id_num"];
-				db.onef('INSERT INTO posts (posted_by, text, font, bg_color, font_size, first_name, last_name, priority, likes, dislikes, posted_date) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)', [sess.userId, req.body.postEntry, req.body.font, req.body.bg_color, req.body.size, data["first_name"], data["last_name"], req.body.priority, 0, 0, date]);
+				db.one('INSERT INTO posts (posted_by, text, font, bg_color, font_size, first_name, last_name, priority, likes, dislikes, posted_date) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)', [sess.userId, req.body.postEntry, req.body.font, req.body.bg_color, req.body.size, data["first_name"], data["last_name"], req.body.priority, 0, 0, date]);
 				.then(function(data2){
 					res.render('profile', { data: data, error: "", message: "Post made!" });
 				})
