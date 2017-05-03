@@ -3,6 +3,13 @@ make it pretty
 only text based posts
 */
 // external JS: masonry.pkgd.js
+var $grid = $('.grid').masonry({
+	itemSelector: '.grid-item',
+	//columnWidth: 160
+	columnWidth: '.grid-sizer',
+	percentPosition: true
+});
+
 window.onload = function(){
 	var all_posts = document.getElementsByClassName("post");
 	var j = 0;
@@ -24,14 +31,8 @@ window.onload = function(){
 		j++;
 	}
 	all_posts.item(0).innerHTML = "hello";
+	$grid.masonry();
 }
-
-var $grid = $('.grid').masonry({
-	itemSelector: '.grid-item',
-	//columnWidth: 160
-	columnWidth: '.grid-sizer',
-	percentPosition: true
-});
 
 var modal = document.getElementById('myModal');
 var span = document.getElementsByClassName("close")[0];
