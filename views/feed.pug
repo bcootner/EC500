@@ -29,13 +29,17 @@ html.no-js
 		- var user = userId
 		script.
 			all_data="#{data[0]['posted_by']}";
+			for (var i=0; i<post_data.length; i++) {
+				post_data[i].likes = 3;
+			}
 		.grid
 			.grid-sizer
 			.grid-item.post
-				p= post_data
+				p= data[0]['text']
 			.grid-item.post
-				p= user
-			.grid-item.post duuuuuuude
+				p= data[1]['text']
+			.grid-item.post
+				p= data[0]['text']
 			.grid-item.post dank memes
 			.grid-item.post cheese poofs
 			.grid-item.post send noods
