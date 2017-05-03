@@ -4,10 +4,15 @@ only text based posts
 */
 // external JS: masonry.pkgd.js
 window.onload = function(){
-	var all_posts = document.getElementsByClassName("posts");
+	var all_posts = document.getElementsByClassName("post");
 	for (var i=0; i<data.length; i++){
 		all_posts.item(i).innerHTML = data[i]['text']
 	}
+/*var all_posts = document.getElementsByClassName("post");
+for(var i = 0; i < all_posts.length; i++)
+{
+   Distribute(slides.item(i));
+}*/
 }
 
 var $grid = $('.grid').masonry({
