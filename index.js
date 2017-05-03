@@ -327,6 +327,7 @@ app.post('/post', function(req,res){
 						var pts = Number(data["exp_pts"])
 						var newPts = pts + Number(ach["pts"])
 						db.none("UPDATE users SET exp_pts = $1 WHERE id_num = $2", [newPts, sess.userId ])
+						data["exp_pts"] = newPts
 						req.session.userId = data["id_num"];
 						var date = new Date()
 						db.none('INSERT INTO transactions (user_id, ach_id, added_date) VALUES ($1,$2,$3)', [sess.userId, ach["ach_id"], date]);
@@ -343,9 +344,10 @@ app.post('/post', function(req,res){
 					var newPts = pts + 10
 					console.log(newPts)
 					db.none("UPDATE users SET exp_pts = $1 WHERE id_num = $2", [newPts, sess.userId ])
+					data["exp_pts"] = newPts
 					req.session.userId = data["id_num"];
 					if (req.body.postEntry.length > 0) {
-						db.none('INSERT INTO posts (posted_by, text, font, bg_color, font_color, font_size, first_name, last_name, priority, likes, dislikes, posted_date) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12)', [sess.userId, req.body.postEntry, req.body.font, req.body.bg_color, req.body.font_color, req.body.size, data["first_name"], data["last_name"], req.body.priority, 0, 0, date]);
+						db.none('INSERT INTO posts (posted_by, text, font, bg_color, font_color, font_size, first_name, last_name, priority, likes, dislikes, posted_date) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12)', [sess.userId, req.body.postEntry, req.body.font, req.body.bg_color, req.body.text_color, req.body.size, data["first_name"], data["last_name"], req.body.priority, 0, 0, date]);
 						res.render('profile', { data: data, error: "", message: "Post made!" });
 					} else {
 						res.render('profile', { data: data, error: "Error posting your message", message: "" });
