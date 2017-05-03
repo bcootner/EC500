@@ -298,7 +298,9 @@ app.post('/post', function(req,res){
 		var date = new Date()
 		db.one('SELECT * FROM users WHERE id_num=$1', [sess.userId])
 			.then(function(data){
+				var pts = Number(data["exp_pts"])
 				req.session.userId = data["id_num"];
+				db.none("UPDATE users SET exp_pts = $1 WHERE id_num = $2", [pts + 10, sess.userId ])
 				db.none('INSERT INTO posts (posted_by, text, font, bg_color, font_size, first_name, last_name, priority, likes, dislikes, posted_date) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)', [sess.userId, req.body.postEntry, req.body.font, req.body.bg_color, req.body.size, data["first_name"], data["last_name"], req.body.priority, 0, 0, date]);
 				res.render('profile', { data: data });
 			})
