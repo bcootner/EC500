@@ -4,7 +4,7 @@ only text based posts
 */
 // external JS: masonry.pkgd.js
 window.onload = function(){
-	data.splice(0,1);
+	//data.splice(0,1);
 	var all_posts = document.getElementsByClassName("post");
 	for (var i=0; i<data.length; i++){
 		all_posts.item(i).innerHTML = data[i]['text'];
