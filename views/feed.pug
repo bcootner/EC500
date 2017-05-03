@@ -25,7 +25,7 @@ html.no-js
 	body
 		h1 ScarletFish
 		- var post_data = data
-		- var user_posts = []
+		- var user_posts = ['test']
 		- var user = userId
 		script.
 			user_posts.push('hi')
@@ -50,7 +50,7 @@ html.no-js
 			.grid-item.post
 			.grid-item.post
 			.grid-item.grid-item-posts
-				p= user_posts[0]
+				p= user_posts[0] + ' ' + user_posts[1]
 			.grid-item.grid-item-posts
 			.grid-item.grid-item-posts
 			.grid-item.post
