@@ -31,7 +31,6 @@ window.onload = function(){
 		j++;
 	}
 	all_posts.item(0).innerHTML = "hello";
-	$grid.masonry();
 }
 
 var modal = document.getElementById('myModal');
