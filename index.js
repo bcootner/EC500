@@ -362,8 +362,8 @@ app.post('/post', function(req,res){
 						if (req.body.bg_color == null) {
 							req.body.bg_color = "#000000"
 						} 
-						if (req.body.bg_color == size) {
-							req.body.bg_color = 8
+						if (req.body.size == null) {
+							req.body.size = 8
 						} 
 
 
