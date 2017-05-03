@@ -236,14 +236,14 @@ app.get('/',function(req,res){
 //get all of the posts
 app.get('/feed',function(req,res){
 	console.log("feed hit");
-	db.any("SELECT * from posts WHERE posted_by=$1 ORDER BY posted_date", [req.session.userId])
+	db.any("SELECT * from posts WHERE posted_by=$1", [req.session.userId])
 	.then(function(myPosts){
 		//got your posts
-		console.log("my posts" + myPosts)
-		db.any("SELECT * from posts WHERE posted_by!=$1 ORDER BY posted_date", [req.session.userId])
+		console.log("my posts" + )
+		db.any("SELECT * from posts WHERE posted_by<>$1", [req.session.userId])
 		.then(function(otherPosts){
 			//got all other posts
-			console.log("my posts" + otherPosts)
+			console.log("other posts" + otherPosts)
 			res.render('feed', { myPosts: myPosts, data: otherPosts});
 		})
 		.catch(function(error){
@@ -312,15 +312,13 @@ app.post('/post', function(req,res){
 				console.log(newPts)
 				db.none("UPDATE users SET exp_pts = $1 WHERE id_num = $2", [newPts, sess.userId ])
 				req.session.userId = data["id_num"];
-				db.one('INSERT INTO posts (posted_by, text, font, bg_color, font_size, first_name, last_name, priority, likes, dislikes, posted_date) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)', [sess.userId, req.body.postEntry, req.body.font, req.body.bg_color, req.body.size, data["first_name"], data["last_name"], req.body.priority, 0, 0, date])
-				.then(function(data2){
+				if (req.body.postEntry.length() > 0) {
+					db.none('INSERT INTO posts (posted_by, text, font, bg_color, font_size, first_name, last_name, priority, likes, dislikes, posted_date) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)', [sess.userId, req.body.postEntry, req.body.font, req.body.bg_color, req.body.size, data["first_name"], data["last_name"], req.body.priority, 0, 0, date]);
 					res.render('profile', { data: data, error: "", message: "Post made!" });
-				})
-				.catch(function(error){
-					console.log("error with insert", error)
-					res.render('profile', { data: data, error: "Error with post", message: "" });
+				} else {
+					res.render('profile', { data: data, error: "Error posting your message", message: "" });
+				}
 
-				})
 			})
 			.catch(function(error){
 				//email and password are wrong  
