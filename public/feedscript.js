@@ -5,12 +5,8 @@ only text based posts
 // external JS: masonry.pkgd.js
 window.onload = function(){
 	var all_posts = document.getElementsByClassName("post");
-	for (var i = data.length - 1, var j = 0; i >= 0; i--, j++) {
-		if (j >= all_posts.length)
-			break;
-		all_posts.item(j).style.font = data[i]['font'];
-		all_posts.item(j).style.background-color = data[i]['bg-color'];
-		all_posts.item(j).innerHTML = data[i]['text'];
+	for (var i = data.length - 1; i >= 0; i--) {
+		all_posts.item(i).innerHTML = data[i]['text'];
 	}
 /*var all_posts = document.getElementsByClassName("post");
 for(var i = 0; i < all_posts.length; i++)
