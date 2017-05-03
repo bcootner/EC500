@@ -24,6 +24,7 @@ window.onload = function(){
 		all_posts.item(j).style.color = data[i]['font_color'];
 		j++;
 	}
+	all_posts.item(0).innerHTML = data[data.length-1]['text']
 	var my_posts = document.getElementsByClassName("grid-item-posts");
 	var j = 0;
 	for (var i = myPosts.length - 1; i >= 0; i--) {
