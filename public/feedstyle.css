@@ -31,7 +31,11 @@ body { font-family: sans-serif; }
 
 .grid-item-others { background: #f94343;}
 .grid-item-profile { background: #f20202;}
-.grid-item-posts { background: #ff3535;}
+.grid-item-posts {
+	border: 4px solid #333;
+	border-color: red;
+	background: #ff3535;
+}
 .post{ }
 
 .grid-item:hover {
