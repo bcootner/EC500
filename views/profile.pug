@@ -7,12 +7,12 @@ html
         -   var color = data.background_color
         -   var styling = "background-color: " + color + ";"
         if (error != "")
-            #errorBar()
+            #errorBar(style="background-color: red")
                 - var errMessage = "Error: " + error
                 p(style='text-align: center; margin = 0px')= errMessage
             #clearer
         if (message != "")
-            #messBar()
+            #messBar(style="background-color: green")
                 - var messMessage = "New Message: " + message
                 p(style='text-align: center; margin = 0px')= messMessage
             #clearer
