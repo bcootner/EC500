@@ -6,7 +6,7 @@ only text based posts
 var $grid = $('.grid').masonry({
 	itemSelector: '.grid-item',
 	//columnWidth: 160
-	columnWidth: '.grid-sizer',
+	columnWidth: 13%,
 	percentPosition: true
 });
 
