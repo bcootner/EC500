@@ -13,6 +13,7 @@ window.onload = function(){
 		all_posts.item(j).innerHTML = data[i]['text'];
 		j++;
 	}
+	var my_posts = document.getElementsByClassName("grid-item-posts");
 	var j = 0;
 	for (var i = myPosts.length - 1; i >= 0; i--) {
 		if (j >= my_posts.length){
