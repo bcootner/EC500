@@ -25,6 +25,8 @@ body { font-family: sans-serif; }
 	border: 2px solid #333;
 	border-color: hsla(0, 0%, 0%, 0.5);
 	border-radius: 5px;
+	margin-top:5px;
+	margin-left: 5px;
 }
 
 .grid-item-others { background: #f94343;}
