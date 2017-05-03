@@ -50,9 +50,10 @@ html
                     else
                         <textarea id="postEntry" name="postEntry" rows="4" cols="100" placeholder="Enter post here..." maxlength="999"></textarea>
                     <input type="hidden" name="firstName" id="firstName">
-                    <input type="hidden" name="lastName" value = "" + data.last_name>
+                    <input type="hidden" name="lastName" id="lastName">
                     <script>
                         document.getElementById("firstName").value = data.first_name;
+                        document.getElementById("lastName").value = data.last_name;
                     </script>
                     p
                     if data.exp_pts >= 500
