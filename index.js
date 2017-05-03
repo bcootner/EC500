@@ -241,7 +241,17 @@ app.get('/feed',function(req,res){
 		//got all posts 
 		console.log(req.session.userId)
 		console.log(data)
-		res.render('feed', { data: data, userId: req.session.userId });
+		var user_posts = []
+		var other_posts = []
+		for (var i=0; i < data.length;i++){
+			if (data[i]['posted_by'] == req.session.userId){
+				user_posts.push(data[i])
+			}
+			else{
+				other_posts.push(data[i])
+			}
+		}
+		res.render('feed', { user_posts: user_posts, other_posts: other_posts, userId: req.session.userId });
 	})
 	.catch(function(error){
 		//error adding pts
