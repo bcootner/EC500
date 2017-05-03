@@ -42,6 +42,8 @@ html
             else if (points < 500)
                 - next = 400 - points
                 - label = next + " points until you can change the text color of your posts!"
+            else
+                - label = "You have " + points + " points!"
             p(style='text-align: center; margin = 0px')= label
         #clearer
         #main_content
