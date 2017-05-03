@@ -11,10 +11,9 @@ window.onload = function(){
 			break;
 		}
 		all_posts.item(j).innerHTML = data[i]['text'];
+		all_posts.item(j).setAttribute("style", "background-color:red;")
 		j++;
 	}
-
-	all_posts.item(0).innerHTML = "yellow";
 	var my_posts = document.getElementsByClassName("grid-item-posts");
 	var j = 0;
 	for (var i = myPosts.length - 1; i >= 0; i--) {
