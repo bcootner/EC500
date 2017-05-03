@@ -18,7 +18,7 @@ window.onload = function(){
 			break;
 		}
 		all_posts.item(j).innerHTML = data[i]['text'];
-		all_posts.item(j).setAttribute("style", "background-color:"+data[i]['bg_color']+";")
+		all_posts.item(j).setAttribute("style", "background-color:"+data[i]['bg_color']+";")	
 		j++;
 	}
 	var my_posts = document.getElementsByClassName("grid-item-posts");
@@ -31,6 +31,7 @@ window.onload = function(){
 		j++;
 	}
 	all_posts.item(0).innerHTML = "first post";
+	$grid.masonry();
 }
 
 var modal = document.getElementById('myModal');
