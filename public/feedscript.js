@@ -24,7 +24,6 @@ window.onload = function(){
 		j++;
 	}
 	all_posts.item(0).innerHTML = "hello";
-	$grid.masonry();
 }
 
 var $grid = $('.grid').masonry({
@@ -40,7 +39,7 @@ var content = document.getElementById('postContent');
 
 $grid.on( 'click', '.post', function() {
 	// change size of item via class
-	$( this ).setAttribute("style", "background-color:red;")
+	$( this ).addClass('grid-item-others');
 	$grid.masonry();
 });
 
