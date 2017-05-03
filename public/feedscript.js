@@ -21,9 +21,9 @@ $grid.on( 'click', '.post', function() {
 //  var elem = document.createElement("img");
 //  elem.src = 'apoocher.jpg';
 //  var text = document.createElement("p");
+	window.location.replace("https://scarletfish.herokuapp.com/login");
 	document.getElementById('postContent').innerHTML = '<img src="apoocher.jpg"/>';
 	modal.style.display = "block";
-	window.location.replace("https://scarletfish.herokuapp.com/login");
 //  document.getElementById("postContent").appendChild("elem");
  // document.getElementById("myModal").appendChild("text");
 //  text.innerHTML = text.innerHTML + 'Extra stuff';
