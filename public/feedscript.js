@@ -6,7 +6,6 @@ only text based posts
 window.onload = function(){
 	var all_posts = document.getElementsByClassName("post");
 	for (var i = data.length - 1; i >= 0; i--) {
-		all_posts.item(i).background-color = data[i]['bg_color'];
 		all_posts.item(i).innerHTML = data[i]['text'];
 	}
 /*var all_posts = document.getElementsByClassName("post");
