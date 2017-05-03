@@ -28,7 +28,7 @@ html.no-js
 		- var user_posts = ['test']
 		- var user = userId
 		script.
-			all_data="!{JSON.stringify(data)}";
+			all_data=JSON.parse(#{data});
 		.grid
 			.grid-sizer
 			.grid-item.post
@@ -51,7 +51,7 @@ html.no-js
 			.grid-item.post
 			.grid-item.grid-item-posts
 				p= user_posts[0] + ' ' + user_posts[1]
-			.grid-item.grid-item-posts wtf man hi stringy
+			.grid-item.grid-item-posts wtf man hi stri
 			.grid-item.grid-item-posts
 			.grid-item.post
 			.grid-item.post
