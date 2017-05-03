@@ -54,15 +54,16 @@ $grid.on( 'click', '.grid-item-profile', function() {
 	window.location.href = "https://scarletfish.herokuapp.com"
 });
 
-$grid.on( 'click', '.grid-item-posts', function() {
+$grid.on( 'click', '.grid-item-posts', function(event) {
 	// change size of item via class
 //  var elem = document.createElement("img");
 //  elem.src = 'apoocher.jpg';
 //  var text = document.createElement("p");
 //redirect works
 //	window.location.replace("https://scarletfish.herokuapp.com/login");
-	document.getElementById('postContent').innerHTML = myPosts[0]['text'];
+	document.getElementById('postContent').innerHTML = $(event.target).text();;
 	modal.style.display = "block";
+
 //  document.getElementById("postContent").appendChild("elem");
  // document.getElementById("myModal").appendChild("text");
 //  text.innerHTML = text.innerHTML + 'Extra stuff';
