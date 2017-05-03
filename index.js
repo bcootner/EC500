@@ -310,7 +310,7 @@ app.post('/post', function(req,res){
 		db.one('SELECT * FROM users WHERE id_num=$1', [sess.userId])
 			.then(function(data){
 				//check for a points post 
-				db.one("SELECT * FROM achievements WHERE method=$1 AND value=$2",[0, req.body.postEntry])
+				db.one("SELECT * FROM achievements WHERE method=$1 AND key=$2",[0, req.body.postEntry])
 				.then(function(ach){
 					//found an achievment that matches 
 					//check if user has entered this ach before 
