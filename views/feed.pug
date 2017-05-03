@@ -24,10 +24,11 @@ html.no-js
 		script(src='masonry.pkgd.min.js')
 	body
 		h1 ScarletFish
+		- var post_data = data
 		.grid
 			.grid-sizer
 			.grid-item.post
-				p= data['anonymous']['text']
+				p= post_data
 			.grid-item.post
 				p= userId
 			.grid-item.post duuuuuuude
