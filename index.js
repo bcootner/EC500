@@ -75,7 +75,7 @@ app.post('/login', function(req,res){
 	.catch(function(error){
 		//email and password are wrong  
 		console.log("error", error);
-		res.sendFile(path.join(__dirname, '/public/InvalidLogin.html'));
+		res.sendFile(path.join(__dirname, '../../public/InvalidLogin.html'));
 	})
 
 });
@@ -296,10 +296,10 @@ app.post('/post', function(req,res){
 	{
 		//add a post
 		var date = new Date()
-		db.none('INSERT INTO posts (posted_by, text, font, bg_color, font_size, first_name, last_name, priority, likes, dislikes, posted_date) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)', [sess.userId, req.body.postEntry, req.body.font, req.body.bg_color, req.body.size, req.body.firstName, req.body.lastName, req.body.priority, 0, 0, date]);
 		db.one('SELECT * FROM users WHERE id_num=$1', [sess.userId])
 			.then(function(data){
 				req.session.userId = data["id_num"];
+				db.none('INSERT INTO posts (posted_by, text, font, bg_color, font_size, first_name, last_name, priority, likes, dislikes, posted_date) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)', [sess.userId, req.body.postEntry, req.body.font, req.body.bg_color, req.body.size, data["firstName"], data["lastName"], req.body.priority, 0, 0, date]);
 				res.render('profile', { data: data });
 			})
 			.catch(function(error){
