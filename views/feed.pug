@@ -24,8 +24,12 @@ html.no-js
 		script(src='masonry.pkgd.min.js')
 	body
 		h1 ScarletFish
-		- var post_data = data[0]['text']
+		- var post_data = data
+		- var user_posts = []
 		- var user = userId
+		each item in post_data
+			if item['posted_by'] == userId
+				user_posts.push(item['text'])
 		.grid
 			.grid-sizer
 			.grid-item.post
@@ -47,6 +51,7 @@ html.no-js
 			.grid-item.post
 			.grid-item.post
 			.grid-item.grid-item-posts
+				p= user_posts[0]
 			.grid-item.grid-item-posts
 			.grid-item.grid-item-posts
 			.grid-item.post
@@ -56,9 +61,7 @@ html.no-js
 			.grid-item.grid-item-posts
 			.grid-item.grid-item-profile
 				.profile-features
-					<form action="/profile" id="logout" method="post" name="logout">
-						img(src='profile-42914_960_720.jpg', style='width:150px; height:150px; top:50%')
-					</form>
+					img(src='profile-42914_960_720.jpg', style='width:150px; height:150px; top:50%')
 			.grid-item.grid-item-posts
 			.grid-item.post
 			.grid-item.post

@@ -21,7 +21,8 @@ $grid.on( 'click', '.post', function() {
 //  var elem = document.createElement("img");
 //  elem.src = 'apoocher.jpg';
 //  var text = document.createElement("p");
-	window.location.replace("https://scarletfish.herokuapp.com/login");
+//redirect works
+//	window.location.replace("https://scarletfish.herokuapp.com/login");
 	document.getElementById('postContent').innerHTML = '<img src="apoocher.jpg"/>';
 	modal.style.display = "block";
 //  document.getElementById("postContent").appendChild("elem");
