@@ -350,6 +350,23 @@ app.post('/post', function(req,res){
 					data["exp_pts"] = newPts
 					req.session.userId = data["id_num"];
 					if (req.body.postEntry.length > 0) {
+						if (req.body.font == null) {
+							req.body.font = "Arial"
+						} 
+						if (req.body.text_color == null) {
+							req.body.text_color = "#ffffff"
+						} 
+						if (req.body.priority == null) {
+							req.body.priority = 0
+						} 
+						if (req.body.bg_color == null) {
+							req.body.bg_color = "#000000"
+						} 
+						if (req.body.bg_color == size) {
+							req.body.bg_color = 8
+						} 
+
+
 						db.none('INSERT INTO posts (posted_by, text, font, bg_color, font_color, font_size, first_name, last_name, priority, likes, dislikes, posted_date) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12)', [sess.userId, req.body.postEntry, req.body.font, req.body.bg_color, req.body.text_color, req.body.size, data["first_name"], data["last_name"], req.body.priority, 0, 0, date]);
 						res.render('profile', { data: data, error: "", message: "Post made!" });
 					} else {
@@ -364,10 +381,6 @@ app.post('/post', function(req,res){
 					})
 
 				})
-
-
-
-				
 	}
 	else
 	{
