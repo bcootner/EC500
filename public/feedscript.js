@@ -17,21 +17,21 @@ window.onload = function(){
 		if (j >= all_posts.length){
 			break;
 		}
-		all_posts.item(j).innerHTML = data[i]['text'];
+		all_posts.item(j).innerHTML = data[i]['text']+"&#10;"+data[i]['first_name']+" "+data[i]['last_name'];
 		all_posts.item(j).style.backgroundColor = data[i]['bg_color'];
 		all_posts.item(j).style.fontFamily = data[i]['font'];
 		all_posts.item(j).style.fontSize = data[i]['font_size'] + "px";
 		all_posts.item(j).style.color = data[i]['font_color'];
 		j++;
 	}
-	all_posts.item(0).innerHTML = data[data.length-1]['text']
+	all_posts.item(0).innerHTML = data[data.length-1]['text'];
 	var my_posts = document.getElementsByClassName("grid-item-posts");
 	var j = 0;
 	for (var i = myPosts.length - 1; i >= 0; i--) {
 		if (j >= my_posts.length){
 			break;
 		}
-		my_posts.item(j).innerHTML = myPosts[i]['text'];
+		my_posts.item(j).innerHTML = myPosts[i]['text']+"&#10;"+data[i]['first_name']+" "+data[i]['last_name'];
 		my_posts.item(j).style.backgroundColor = myPosts[i]['bg_color'];
 		my_posts.item(j).style.fontFamily = myPosts[i]['font'];
 		my_posts.item(j).style.fontSize = myPosts[i]['font_size'] + "px";
