@@ -23,7 +23,7 @@ $grid.on( 'click', '.post', function() {
 //  var text = document.createElement("p");
 //redirect works
 //	window.location.replace("https://scarletfish.herokuapp.com/login");
-	document.getElementById('postContent').innerHTML = 'stockstuff';
+	document.getElementById('postContent').innerHTML = all_data + 'crusty';
 	modal.style.display = "block";
 //  document.getElementById("postContent").appendChild("elem");
  // document.getElementById("myModal").appendChild("text");
