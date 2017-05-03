@@ -3,6 +3,13 @@ make it pretty
 only text based posts
 */
 // external JS: masonry.pkgd.js
+var $grid = $('.grid').masonry({
+	itemSelector: '.grid-item',
+	//columnWidth: 160
+	columnWidth: '.grid-sizer',
+	percentPosition: true
+});
+
 window.onload = function(){
 	var all_posts = document.getElementsByClassName("post");
 	var j = 0;
@@ -26,13 +33,6 @@ window.onload = function(){
 	all_posts.item(0).innerHTML = "hello";
 }
 
-var $grid = $('.grid').masonry({
-	itemSelector: '.grid-item',
-	//columnWidth: 160
-	columnWidth: '.grid-sizer',
-	percentPosition: true
-});
-
 var modal = document.getElementById('myModal');
 var span = document.getElementsByClassName("close")[0];
 var content = document.getElementById('postContent');
@@ -42,10 +42,6 @@ $grid.on( 'click', '.post', function() {
 	$( this ).addClass('grid-item-others');
 	$grid.masonry();
 });
-
-$grid.on( 'click', '.grid-item-profile', function() {
-	window.location.href = "https://scarletfish.herokuapp.com"
-}
 
 $grid.on( 'click', '.grid-item-posts', function() {
 	// change size of item via class
