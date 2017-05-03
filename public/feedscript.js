@@ -78,10 +78,10 @@ $grid.on( 'click', '.post', function(event) {
 //redirect works
 //	window.location.replace("https://scarletfish.herokuapp.com/login");
 	document.getElementById('postContent').innerHTML = $(event.target).text();
-	document.getElementById('postContent').style.backgroundColor = red;
-	document.getElementById('postContent').style.fontFamily = $(event.target).fontFamily;
-	document.getElementById('postContent').style.fontSize = $(event.target).fontSize;
-	document.getElementById('postContent').style.color = $(event.target).color;
+	document.getElementById('postContent').style.backgroundColor = $(event.target).style.backgroundColor;
+	document.getElementById('postContent').style.fontFamily = $(event.target).style.fontFamily;
+	document.getElementById('postContent').style.fontSize = $(event.target).style.fontSize;
+	document.getElementById('postContent').style.color = $(event.target).style.color;
 	modal.style.display = "block";
 
 //  document.getElementById("postContent").appendChild("elem");
