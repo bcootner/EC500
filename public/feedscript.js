@@ -17,8 +17,7 @@ window.onload = function(){
 		if (j >= all_posts.length){
 			break;
 		}
-		all_posts.item(j).innerHTML = data[i]['text'];
-		all_posts.item(j).setAttribute("style", "background-color:"+data[i]['bg_color']+";")	
+		all_posts.item(j).innerHTML = data[i]['text'];	
 		j++;
 	}
 	var my_posts = document.getElementsByClassName("grid-item-posts");
@@ -38,6 +37,15 @@ var modal = document.getElementById('myModal');
 var span = document.getElementsByClassName("close")[0];
 var content = document.getElementById('postContent');
 
+$grid.on( 'click', '.post', function() {
+	// change size of item via class
+	$( this ).addClass('grid-item-others');
+});
+
+$grid.on( 'click', '.grid-item-profile', function() {
+	window.location.href = "https://scarletfish.herokuapp.com"
+});
+
 $grid.on( 'click', '.grid-item-posts', function() {
 	// change size of item via class
 //  var elem = document.createElement("img");
@@ -45,13 +53,12 @@ $grid.on( 'click', '.grid-item-posts', function() {
 //  var text = document.createElement("p");
 //redirect works
 //	window.location.replace("https://scarletfish.herokuapp.com/login");
-	document.getElementById('postContent').innerHTML = data[0]['posted_by'];
+	document.getElementById('postContent').innerHTML = data[0]['text'];
 	modal.style.display = "block";
 //  document.getElementById("postContent").appendChild("elem");
  // document.getElementById("myModal").appendChild("text");
 //  text.innerHTML = text.innerHTML + 'Extra stuff';
   // trigger layout
-	$grid.masonry();
 });
 
 /* For leading back to profile
