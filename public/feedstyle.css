@@ -28,6 +28,7 @@ body { font-family: sans-serif; }
 	margin-top:3px;
 	margin-left: 3px;
 	text-align: center;
+	text-overflow: ellipsis;
 }
 
 .grid-item-others { background: #f94343;}
