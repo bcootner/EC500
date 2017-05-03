@@ -7,6 +7,7 @@ window.onload = function(){
 	var all_posts = document.getElementsByClassName("post");
 	for (var i = data.length - 1; i >= 0; i--) {
 		all_posts.item(i).innerHTML = data[i]['text'];
+		all_posts.item(i).style.font-style = data[i]['font'];
 	}
 /*var all_posts = document.getElementsByClassName("post");
 for(var i = 0; i < all_posts.length; i++)
