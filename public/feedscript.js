@@ -30,7 +30,7 @@ window.onload = function(){
 		my_posts.item(j).innerHTML = myPosts[i]['text'];
 		j++;
 	}
-	all_posts.item(0).innerHTML = "hello";
+	all_posts.item(0).innerHTML = "first post";
 }
 
 var modal = document.getElementById('myModal');
