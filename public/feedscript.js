@@ -38,17 +38,6 @@ var modal = document.getElementById('myModal');
 var span = document.getElementsByClassName("close")[0];
 var content = document.getElementById('postContent');
 
-$grid.on( 'click', '.post', function() {
-	// change size of item via class
-	$( this ).addClass('grid-item-others');
-	$grid.masonry();
-});
-
-$grid.on( 'click', '.grid-item-profile', function() {
-	window.location.href = "https://scarletfish.herokuapp.com"
-	$grid.masonry();
-});
-
 $grid.on( 'click', '.grid-item-posts', function() {
 	// change size of item via class
 //  var elem = document.createElement("img");
