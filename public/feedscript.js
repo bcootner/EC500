@@ -23,6 +23,7 @@ window.onload = function(){
 		my_posts.item(j).innerHTML = myPosts[i]['text'];
 		j++;
 	}
+	all_posts.item(0).innerHTML = "hello";
 }
 
 var $grid = $('.grid').masonry({
