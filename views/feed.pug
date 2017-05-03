@@ -30,6 +30,8 @@ html.no-js
 		each item in post_data
 			if item['posted_by'] == userId.valueOf()
 				user_posts.push(item['text'])
+			else
+				user_posts.push('hi')
 		.grid
 			.grid-sizer
 			.grid-item.post
