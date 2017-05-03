@@ -6,6 +6,11 @@ html
         script(src='profileScripts.js')
         -   var color = data.background_color
         -   var styling = "background-color: " + color + ";"
+        if (error != "")
+            #errorBar(style=styling)
+                - var errMessage = error + ": " + message
+                p(style='text-align: center; margin = 0px')= errMessage
+            #clearer
         #header_content(style=styling)
             h1(class='header_objects' id='name')
                 .profile_pic(style='float: left')
@@ -62,7 +67,9 @@ html
                 
                 <form action="/post" id="user_post_form" method="post" name="post_form" id="postForm">
 
-                    if data.exp_pts <= 999
+                    if data.exp_pts <= 200
+                        <textarea id="postEntry" name="postEntry" id="postEntry" rows="4" cols="100" placeholder="Enter post here..." maxlength="200"></textarea>
+                    else if data.exp_pts <= 999 
                         <textarea id="postEntry" name="postEntry" id="postEntry" rows="4" cols="100" placeholder="Enter post here..."></textarea>
                         <script>
                             document.getElementById("postEntry").maxlength = data.exp_pts;
@@ -112,6 +119,8 @@ html
                         |        </select>
                     p
                     <input type="submit" value="Submit" id="submit"/>
+                    <br><br><br>
+                    <a href="/feed">Check out your feed</a>
                 </form>
 
             .panels.left(style=styling)

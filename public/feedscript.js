@@ -5,18 +5,26 @@ only text based posts
 // external JS: masonry.pkgd.js
 window.onload = function(){
 	var all_posts = document.getElementsByClassName("post");
+	var j = 0;
 	for (var i = data.length - 1; i >= 0; i--) {
-		all_posts.item(i).innerHTML = data[i]['text'];
+		if (j >= all_posts.length){
+			break;
+		}
+		all_posts.item(j).innerHTML = data[i]['text'];
+		all_posts.item(j).setAttribute("style", "background-color:"+data[i]['bg_color']+";")
+		j++;
 	}
-	var my_posts = document.getElementsByClassName("post");
+	var my_posts = document.getElementsByClassName("grid-item-posts");
+	var j = 0;
 	for (var i = myPosts.length - 1; i >= 0; i--) {
-		my_posts.item(i).innerHTML = myPosts[i]['text'];
+		if (j >= my_posts.length){
+			break;
+		}
+		my_posts.item(j).innerHTML = myPosts[i]['text'];
+		j++;
 	}
-/*var all_posts = document.getElementsByClassName("post");
-for(var i = 0; i < all_posts.length; i++)
-{
-   Distribute(slides.item(i));
-}*/
+	all_posts.item(0).innerHTML = "hello";
+	$grid.masonry();
 }
 
 var $grid = $('.grid').masonry({
@@ -32,9 +40,13 @@ var content = document.getElementById('postContent');
 
 $grid.on( 'click', '.post', function() {
 	// change size of item via class
-	$( this ).addClass('grid-item-others');
+	$( this ).setAttribute("style", "background-color:red;")
 	$grid.masonry();
 });
+
+$grid.on( 'click', '.grid-item-profile', function() {
+	window.location.href = "https://scarletfish.herokuapp.com"
+}
 
 $grid.on( 'click', '.grid-item-posts', function() {
 	// change size of item via class
