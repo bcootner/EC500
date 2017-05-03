@@ -59,6 +59,7 @@ $grid.on( 'click', '.grid-item-posts', function() {
  // document.getElementById("myModal").appendChild("text");
 //  text.innerHTML = text.innerHTML + 'Extra stuff';
   // trigger layout
+	$grid.masonry()
 });
 
 /* For leading back to profile
