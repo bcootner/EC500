@@ -8,8 +8,13 @@ html
         -   var styling = "background-color: " + color + ";"
         if (error != "")
             #errorBar(style=styling)
-                - var errMessage = error + ": " + message
+                - var errMessage = "Error: " + error
                 p(style='text-align: center; margin = 0px')= errMessage
+            #clearer
+        if (message != "")
+            #errorBar(style=styling)
+                - var messMessage = "New Message: " + message
+                p(style='text-align: center; margin = 0px')= messMessage
             #clearer
         #header_content(style=styling)
             h1(class='header_objects' id='name')
@@ -88,7 +93,7 @@ html
                     else
                         | Text: <input type="hidden" name="priority" value="0"> 
                     if data.exp_pts >= 400
-                        | Text: <input type="color" name="text_color" value="#000000">
+                        | Text: <input type="color" name="text_color" value="#111111">
                     if data.exp_pts >= 100
                         | Background: <input type="color" name="bg_color" value="#111111"> 
                     if data.exp_pts >= 200
