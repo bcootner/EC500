@@ -27,6 +27,7 @@ body { font-family: sans-serif; }
 	border-radius: 5px;
 	margin-top:3px;
 	margin-left: 3px;
+	text-align: center;
 }
 
 .grid-item-others { background: #f94343;}
@@ -37,7 +38,6 @@ body { font-family: sans-serif; }
 	background: #ff3535;
 }
 .post{
-	margin: 0 auto;
 }
 
 .grid-item:hover {
