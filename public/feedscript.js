@@ -20,7 +20,7 @@ window.onload = function(){
 		all_posts.item(j).innerHTML = data[i]['text'];
 		all_posts.item(j).style.backgroundColor = data[i]['bg_color'];
 		all_posts.item(j).style.fontFamily = data[i]['font'];
-		all_posts.item(j).style.size = data[i]['font_size'];
+		all_posts.item(j).style.fontSize = data[i]['font_size'];
 		all_posts.item(j).style.color = data[i]['font_color'];
 		j++;
 	}
@@ -33,7 +33,7 @@ window.onload = function(){
 		my_posts.item(j).innerHTML = myPosts[i]['text'];
 		my_posts.item(j).style.backgroundColor = myPosts[i]['bg_color'];
 		my_posts.item(j).style.fontFamily = myPosts[i]['font'];
-		my_posts.item(j).style.size = myPosts[i]['font_size'];
+		my_posts.item(j).style.fontSize = myPosts[i]['font_size'];
 		my_posts.item(j).style.color = myPosts[i]['font_color'];
 		j++;
 	}
