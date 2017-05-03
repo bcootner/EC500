@@ -232,10 +232,62 @@ app.get('/',function(req,res){
 	}
 });
 
+//for all other directories 
+app.get('/:input',function(req,res){
+	console.log(req.params.input)
+	if (req.session.userId != null) {
+		//add a post
+		var date = new Date()
+		db.one('SELECT * FROM users WHERE id_num=$1', [sess.userId])
+			.then(function(data){
+				//check for a points input 
+				db.one("SELECT * FROM achievements WHERE method=$1 AND key=$2",[1, req.params.input])
+				.then(function(ach){
+					//found an achievment that matches 
+					//check if user has entered this ach before 
+					console.log("founc ach matching get")
+					db.one("SELECT * FROM transactions WHERE user_id=$1 AND ach_id=$2", [sess.userId, ach["ach_id"]])
+					.then(function(transaction){
+						//found transaction already entered this post and got points 
+						console.log("Already got points for ach")
+						res.render('profile', { data: data, error: "You already unlocked the " + ach["name"] +  " achievement", message: "" });
+					})
+					.catch(function(error){
+						//not yet entered give points and add to transaction table
+						console.log("Give points!")
+						var pts = Number(data["exp_pts"])
+						var newPts = pts + Number(ach["pts"])
+						db.none("UPDATE users SET exp_pts = $1 WHERE id_num = $2", [newPts, sess.userId ])
+						data["exp_pts"] = newPts
+						req.session.userId = data["id_num"];
+						var date = new Date()
+						db.none('INSERT INTO transactions (user_id, ach_id, added_date) VALUES ($1,$2,$3)', [sess.userId, ach["ach_id"], date]);
+						res.render('profile', { data: data, error: "You unlocked the " + ach["name"] + " achievement", message: "" });
+
+					})
+				})
+				.catch(function(error){
+					//error with selecting user 
+					console.log("error finding ach")
+					res.render('profile', { data: data, error: "Invalid achievement", message: "" });
+				})
+			})
+			.catch(function(error){
+				console.log("error finding user")
+				res.sendFile(path.join(__dirname, '/public/errorPage.html'));		
+			})
+
+	} else {
+		res.sendFile(path.join(__dirname, '/public/errorPage.html'));
+	}
+})
 
 //get all of the posts
 app.get('/feed',function(req,res){
 	console.log("feed hit");
+	if (req.session.userId == null) {
+		res.sendFile(path.join(__dirname, '/public/signup.html'));
+	} else {
 	db.any("SELECT * from posts WHERE posted_by=$1 ORDER BY posted_date", [req.session.userId])
 	.then(function(myPosts){
 		//got your posts
@@ -259,6 +311,7 @@ app.get('/feed',function(req,res){
 		console.log("error with your posts", error);
 
 	})
+  }
 });
 
 
