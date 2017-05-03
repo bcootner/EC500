@@ -236,11 +236,11 @@ app.get('/',function(req,res){
 //get all of the posts
 app.get('/feed',function(req,res){
 	console.log("feed hit");
-	db.any("SELECT * from posts WHERE id_num=$1 ORDER BY posted_date", [req.session.userId])
+	db.any("SELECT * from posts WHERE posted_by=$1 ORDER BY posted_date", [req.session.userId])
 	.then(function(myPosts){
 		//got your posts
 		console.log("my posts" + myPosts)
-		db.any("SELECT * from posts WHERE id_num!=$1 ORDER BY posted_date", [req.session.userId])
+		db.any("SELECT * from posts WHERE posted_by!=$1 ORDER BY posted_date", [req.session.userId])
 		.then(function(otherPosts){
 			//got all other posts
 			console.log("my posts" + otherPosts)
