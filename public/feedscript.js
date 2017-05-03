@@ -46,6 +46,7 @@ $grid.on( 'click', '.post', function() {
 
 $grid.on( 'click', '.grid-item-profile', function() {
 	window.location.href = "https://scarletfish.herokuapp.com"
+	$grid.masonry();
 });
 
 $grid.on( 'click', '.grid-item-posts', function() {
