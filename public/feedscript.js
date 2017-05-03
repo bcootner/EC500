@@ -11,7 +11,7 @@ window.onload = function(){
 			break;
 		}
 		all_posts.item(j).innerHTML = data[i]['text'];
-		all_posts.item(j).setAttribute("style", "background-color:"+data[i]['bg_color'])
+		all_posts.item(j).setAttribute("style", "background-color:"+data[i]['bg_color']+";")
 		j++;
 	}
 	var my_posts = document.getElementsByClassName("grid-item-posts");
@@ -24,6 +24,7 @@ window.onload = function(){
 		j++;
 	}
 	all_posts.item(0).innerHTML = "hello";
+	$grid.masonry();
 }
 
 var $grid = $('.grid').masonry({
@@ -39,9 +40,13 @@ var content = document.getElementById('postContent');
 
 $grid.on( 'click', '.post', function() {
 	// change size of item via class
-	$( this ).addClass('grid-item-others');
+	$( this ).setAttribute("style", "background-color:red;")
 	$grid.masonry();
 });
+
+$grid.on( 'click', '.grid-item-profile', function() {
+	window.location.href = "https://scarletfish.herokuapp.com"
+}
 
 $grid.on( 'click', '.grid-item-posts', function() {
 	// change size of item via class
