@@ -26,9 +26,14 @@ var modal = document.getElementById('myModal');
 var span = document.getElementsByClassName("close")[0];
 var content = document.getElementById('postContent');
 
-$grid.on( 'click', '.grid-item-posts', function() {
+$grid.on( 'click', '.post', function() {
 	// change size of item via class
 	$( this ).addClass('grid-item-others');
+	$grid.masonry();
+});
+
+$grid.on( 'click', '.grid-item-posts', function() {
+	// change size of item via class
 //  var elem = document.createElement("img");
 //  elem.src = 'apoocher.jpg';
 //  var text = document.createElement("p");
@@ -40,13 +45,6 @@ $grid.on( 'click', '.grid-item-posts', function() {
  // document.getElementById("myModal").appendChild("text");
 //  text.innerHTML = text.innerHTML + 'Extra stuff';
   // trigger layout
-	$grid.masonry();
-});
-
-$grid.on( 'click', '.grid-item', function() {
-	// change size of item via class
-	$( this ).toggleClass('grid-item-');
-	// trigger layout
 	$grid.masonry();
 });
 
