@@ -11,7 +11,7 @@ window.onload = function(){
 			break;
 		}
 		all_posts.item(j).innerHTML = data[i]['text'];
-		all_posts.item(j).setAttribute("style", "background-color:red;")
+		all_posts.item(j).setAttribute("style", "background-color:"+data[i]['bg_color'])
 		j++;
 	}
 	var my_posts = document.getElementsByClassName("grid-item-posts");
