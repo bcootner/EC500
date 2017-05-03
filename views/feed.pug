@@ -28,10 +28,7 @@ html.no-js
 		- var user_posts = ['test']
 		- var user = userId
 		script.
-			all_data="#{data[0]['posted_by']}";
-			for (var i=0; i<post_data.length; i++) {
-				post_data[i]['likes'] = 3;
-			}
+			var data = !{JSON.stringify(data)}
 		.grid
 			.grid-sizer
 			.grid-item.post
@@ -43,7 +40,8 @@ html.no-js
 				if (data.length > 2)
 					p= data[2]['text']
 			.grid-item.post
-				p= data[0]['text']
+				if (data.length > 10)
+					p= data[10]['text']
 			.grid-item.post
 				p= data[0]['text']
 			.grid-item.post
