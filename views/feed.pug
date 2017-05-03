@@ -29,6 +29,7 @@ html.no-js
 		- var user = userId
 		script.
 			var data = !{JSON.stringify(data)}
+			var myPosts = !{JSON.stringify(myPosts)}
 		.grid
 			.grid-sizer
 			.grid-item.post
@@ -48,8 +49,7 @@ html.no-js
 			.grid-item.post
 			.grid-item.post
 			.grid-item.grid-item-posts
-				p= user_posts[0] + ' ' + user_posts[1]
-			.grid-item.grid-item-posts wtf man hi 3
+			.grid-item.grid-item-posts
 			.grid-item.grid-item-posts
 			.grid-item.post
 			.grid-item.post

@@ -8,6 +8,10 @@ window.onload = function(){
 	for (var i = data.length - 1; i >= 0; i--) {
 		all_posts.item(i).innerHTML = data[i]['text'];
 	}
+	var my_posts = document.getElementsByClassName("grid-item-posts");
+	for (var i = myPosts.length - 1; i >= 0; i--) {
+		my_posts.item(i).innerHTML = myPosts[i]['text'];
+	}
 /*var all_posts = document.getElementsByClassName("post");
 for(var i = 0; i < all_posts.length; i++)
 {
