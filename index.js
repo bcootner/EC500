@@ -239,7 +239,7 @@ app.get('/feed',function(req,res){
 	db.any("SELECT * from posts WHERE posted_by=$1", [req.session.userId])
 	.then(function(myPosts){
 		//got your posts
-		console.log("my posts" + )
+		console.log(myPosts)
 		db.any("SELECT * from posts WHERE posted_by<>$1", [req.session.userId])
 		.then(function(otherPosts){
 			//got all other posts
