@@ -36,7 +36,9 @@ body { font-family: sans-serif; }
 	border-color: black;
 	background: #ff3535;
 }
-.post{ }
+.post{
+	margin: 0 auto;
+}
 
 .grid-item:hover {
 	background: #A2C;
