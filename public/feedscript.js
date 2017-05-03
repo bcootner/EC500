@@ -3,10 +3,11 @@ make it pretty
 only text based posts
 */
 // external JS: masonry.pkgd.js
-
-var all_posts = document.getElementsByClassName("posts");
-for (var i=0; i<data.length; i++){
-	all_posts.item(i).innerHTML = data[i]['text']
+window.onload = function(){
+	var all_posts = document.getElementsByClassName("posts");
+	for (var i=0; i<data.length; i++){
+		all_posts.item(i).innerHTML = data[i]['text']
+	}
 }
 
 var $grid = $('.grid').masonry({
