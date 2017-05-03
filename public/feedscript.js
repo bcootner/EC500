@@ -5,11 +5,13 @@ only text based posts
 // external JS: masonry.pkgd.js
 window.onload = function(){
 	var all_posts = document.getElementsByClassName("post");
-	for (var i = data.length - 1, var j = 0; i >= 0; i--, j++) {
+	var j = 0;
+	for (var i = data.length - 1; i >= 0; i--) {
 		if (j >= all_posts.length){
 			break;
 		}
 		all_posts.item(j).innerHTML = data[i]['text'];
+		j++;
 	}
 	var my_posts = document.getElementsByClassName("grid-item-posts");
 	for (var i = my_posts.length - 1; i >= 0; i--) {
