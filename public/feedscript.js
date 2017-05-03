@@ -4,11 +4,10 @@ only text based posts
 */
 // external JS: masonry.pkgd.js
 window.onload = function(){
-	var all_posts = document.getElementsByClassName("post");
+	var all_posts = document.getElementsByClassName("grid-item-others");
 	for (var i = data.length - 1; i >= 0; i--) {
 		all_posts.item(i).innerHTML = data[i]['text'];
-		all_posts.item(i).style.background-color = data[i]['font'];
-		all_posts.item(i).style.font = data[i]['bg_color'];
+		all_posts.item(i).style.font = data[i]['font'];
 	}
 /*var all_posts = document.getElementsByClassName("post");
 for(var i = 0; i < all_posts.length; i++)
