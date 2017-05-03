@@ -6,6 +6,11 @@ html
         script(src='profileScripts.js')
         -   var color = data.background_color
         -   var styling = "background-color: " + color + ";"
+        if (error != "")
+            #errorBar(style=styling)
+                - var errMessage = error + ": " + message
+                p(style='text-align: center; margin = 0px')= errMessage
+            #clearer
         #header_content(style=styling)
             h1(class='header_objects' id='name')
                 .profile_pic(style='float: left')
