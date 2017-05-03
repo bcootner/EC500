@@ -28,7 +28,7 @@ html.no-js
 		- var user_posts = []
 		- var user = userId
 		each item in post_data
-			if item['posted_by'] == userId
+			if item['posted_by'] == userId.valueOf()
 				user_posts.push(item['text'])
 		.grid
 			.grid-sizer
