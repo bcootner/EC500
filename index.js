@@ -334,7 +334,7 @@ app.post('/post', function(req,res){
 						req.session.userId = data["id_num"];
 						var date = new Date()
 						db.none('INSERT INTO transactions (user_id, ach_id, added_date) VALUES ($1,$2,$3)', [sess.userId, ach["ach_id"], date]);
-						res.render('profile', { data: data, error: "You unlocked the " + ach["name"] + " achievement", message: "" });
+						res.render('profile', { data: data, error: "", message: "You unlocked the " + ach["name"] + " achievement"});
 
 					})
 				})
