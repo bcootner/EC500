@@ -319,7 +319,7 @@ app.post('/post', function(req,res){
 					.then(function(transaction){
 						//found transaction already entered this post and got points 
 						console.log("Already got points for ach")
-						res.render('profile', { data: data, error: "You already unlocked the " ach["name"] +  "achievement", message: "" });
+						res.render('profile', { data: data, error: "You already unlocked the " + ach["name"] +  " achievement", message: "" });
 					})
 					.catch(function(error){
 						//not yet entered give points and add to transaction table
@@ -330,7 +330,7 @@ app.post('/post', function(req,res){
 						req.session.userId = data["id_num"];
 						var date = new Date()
 						db.none('INSERT INTO transactions (user_id, ach_id, added_date) VALUES ($1,$2,$3)', [sess.userId, ach["ach_id"], date]);
-						res.render('profile', { data: data, error: "You unlocked the " + ach["name"] + " achievements", message: "" });
+						res.render('profile', { data: data, error: "You unlocked the " + ach["name"] + " achievement", message: "" });
 
 					})
 				})
