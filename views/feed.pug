@@ -24,10 +24,11 @@ html.no-js
 		script(src='masonry.pkgd.min.js')
 	body
 		h1 ScarletFish
-		- var post_data = other_posts
+		- var post_data = data
+		- var user_posts = ['test']
 		- var user = userId
 		script.
-			all_data="#{user_data[0]['posted_by']}";
+			all_data="#{data[0]['posted_by']}";
 		.grid
 			.grid-sizer
 			.grid-item.post
