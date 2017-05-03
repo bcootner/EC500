@@ -70,6 +70,26 @@ $grid.on( 'click', '.grid-item-posts', function(event) {
   // trigger layout
 });
 
+$grid.on( 'click', '.post', function(event) {
+	// change size of item via class
+//  var elem = document.createElement("img");
+//  elem.src = 'apoocher.jpg';
+//  var text = document.createElement("p");
+//redirect works
+//	window.location.replace("https://scarletfish.herokuapp.com/login");
+	document.getElementById('postContent').innerHTML = $(event.target).style.backgroundColor;/*
+	document.getElementById('postContent').style.backgroundColor = $(event.target).style.backgroundColor;
+	document.getElementById('postContent').style.fontFamily = $(event.target).style.fontFamily;
+	document.getElementById('postContent').style.fontSize = $(event.target).style.fontSize;
+	document.getElementById('postContent').style.color = $(event.target).style.color;*/
+	modal.style.display = "block";
+
+//  document.getElementById("postContent").appendChild("elem");
+ // document.getElementById("myModal").appendChild("text");
+//  text.innerHTML = text.innerHTML + 'Extra stuff';
+  // trigger layout
+});
+
 /* For leading back to profile
 $grid.on( 'click', '.grid-item', function() {
   // change size of item via class
