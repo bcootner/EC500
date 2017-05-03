@@ -13,7 +13,7 @@ window.onload = function(){
 		all_posts.item(j).innerHTML = data[i]['text'];
 		j++;
 	}
-	all_posts.item(0).style.background-color = "yellow";
+	all_posts.item(0).innerHTML = "yellow";
 	var my_posts = document.getElementsByClassName("grid-item-posts");
 	var j = 0;
 	for (var i = myPosts.length - 1; i >= 0; i--) {
