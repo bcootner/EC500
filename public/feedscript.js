@@ -13,9 +13,13 @@ window.onload = function(){
 		all_posts.item(j).innerHTML = data[i]['text'];
 		j++;
 	}
-	var my_posts = document.getElementsByClassName("grid-item-posts");
-	for (var i = my_posts.length - 1; i >= 0; i--) {
-		my_posts.item(i).innerHTML = my_posts[i]['text'];
+	var j = 0;
+	for (var i = myPosts.length - 1; i >= 0; i--) {
+		if (j >= my_posts.length){
+			break;
+		}
+		my_posts.item(j).innerHTML = myPosts[i]['text'];
+		j++;
 	}
 }
 
