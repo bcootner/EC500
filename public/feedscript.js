@@ -17,7 +17,8 @@ window.onload = function(){
 		if (j >= all_posts.length){
 			break;
 		}
-		all_posts.item(j).innerHTML = data[i]['text'];	
+		all_posts.item(j).innerHTML = data[i]['text'];
+		all_posts.item(j).setAttribute("style", "background-color:"+data[i]['bg_color']+";")	
 		j++;
 	}
 	var my_posts = document.getElementsByClassName("grid-item-posts");
@@ -40,6 +41,7 @@ var content = document.getElementById('postContent');
 $grid.on( 'click', '.post', function() {
 	// change size of item via class
 	$( this ).addClass('grid-item-others');
+
 });
 
 $grid.on( 'click', '.grid-item-profile', function() {
@@ -59,7 +61,6 @@ $grid.on( 'click', '.grid-item-posts', function() {
  // document.getElementById("myModal").appendChild("text");
 //  text.innerHTML = text.innerHTML + 'Extra stuff';
   // trigger layout
-	$grid.masonry()
 });
 
 /* For leading back to profile
