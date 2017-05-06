@@ -5,7 +5,7 @@ points. Points unlock features that you can show off to friends too show that yo
 Achievements are available from the profile page to find hidden information which give large amounts of points.
 
 The site is hosted at https://scarletfish.herokuapp.com. Check it out!
-*Please visit the website only with https://. Cookies do not work properly with normal http.
+*Please visit the website only with https://. Cookies do not work properly with normal http.*
 
 To register for an account, head over to the site and register for an account using an email. Then head over
 to the login page. Once you log in, you can make posts from your profile page. Your posts will be shown around
