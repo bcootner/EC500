@@ -9,11 +9,11 @@ var randStr = require("randomstring");
 var app = express();
 var port = process.env.PORT || 8080;
 
-var db = pgp('postgres://djlciyuhmnrckz:863b9dcbf6f076e322b38b2e2e62812b5ca32f301205941fb0c2b8725cf1cf9d@ec2-54-235-72-121.compute-1.amazonaws.com:5432/ddv40oul581abb');
+var db = pgp(process.env.DATABASE_URL);
 
 var sess = {
-  secret: 'keyboard cat',
-  cookie: { maxAge: 300000 },
+  secret: process.env.COOKIE_SECRET,
+  cookie: { maxAge: 3000000 },
   proxy: true,
   resave: true,
   saveUninitialized: true
